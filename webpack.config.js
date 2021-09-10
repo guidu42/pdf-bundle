@@ -23,7 +23,7 @@ Encore
     // .addEntry('app', './assets/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+    // .enableStimulusBridge('./assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -59,19 +59,19 @@ Encore
     .enableSassLoader()
 
     //Backend style and scripts
-    // .addEntry('back-scripts', './assets/back/scripts/index.ts')
+    .addEntry('back-scripts', './assets/back/scripts/index.ts')
     .addStyleEntry('back-style', './assets/back/styles/index.scss')
 
     //Frontend style and scripts
-    // .addEntry('front-scripts', './assets/front/scripts/index.ts')
+    .addEntry('front-scripts', './assets/front/scripts/index.ts')
     .addStyleEntry('front-style', './assets/front/styles/index.scss')
 
     //Shared style and scripts
-    // .addEntry('shared-scripts', './assets/shared/scripts/index.ts')
+    .addEntry('shared-scripts', './assets/shared/scripts/index.ts')
     .addStyleEntry('shared-style', './assets/shared/styles/index.scss')
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()
