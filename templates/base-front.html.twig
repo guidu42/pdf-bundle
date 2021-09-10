@@ -2,3 +2,7 @@
 {% block stylesheets_custom %}
     <link rel="stylesheet" href="{{ asset('build/front-style.css') }}"/>
 {% endblock %}
+
+{% block navBar %}
+    {% include 'front/components/header/nav-bar.html.twig' %}
+{% endblock %}
