@@ -1,0 +1,208 @@
+@import '~tiny-slider/src/tiny-slider';
+
+$tns-nav-height: 88px;
+
+.absolute-controls-slider-container {
+    .tns-ovh {
+        @include media-breakpoint-up(md) {
+            width: 100%;
+        }
+    }
+
+    .tns-outer {
+        .tns-controls {
+            @include media-breakpoint-up(md) {
+                width: calc(100% + 110px);
+                left: -55px;
+            }
+        }
+    }
+}
+
+.tns-ovh {
+    width: 100%;
+}
+
+.tns-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    padding-left: 150px;
+    padding-right: 150px;
+    align-items: center;
+    height: calc(100% - #{$tns-nav-height});
+
+    @include media-breakpoint-down(md) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    > button {
+        position: relative;
+        border: none;
+        background: $black;
+        font-size: 1.75rem;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        color: white;
+        border-radius: 50px;
+        transition-duration: 350ms;
+        z-index: 99;
+
+        &:hover {
+            color: gray;
+            background: white;
+        }
+
+        &::after {
+            position: absolute;
+            top: -5px;
+            //font-family: $icon-font;
+        }
+
+        &[data-controls='next'] {
+            &::after {
+                content: '\f105';
+                right: 7px;
+            }
+        }
+
+        &[data-controls='prev'] {
+            &::after {
+                content: '\f104';
+                right: 10px;
+            }
+        }
+    }
+}
+
+.tns-nav {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    padding: 2.5rem 0 1.5rem 0;
+
+    button {
+        border: none;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: black;
+        margin: 0 0.4rem;
+        opacity: 1;
+        transition-duration: 0.35s;
+
+        &:hover {
+            opacity: 0.5;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &.tns-nav-active {
+            background: gray;
+            opacity: 1;
+        }
+    }
+}
+
+.tns-outer {
+    width: 100%;
+    position: relative;
+
+    .tns-carousel {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.customize-tools {
+    position: relative;
+
+    .thumbnails {
+        text-align: center;
+
+        li {
+            width: 185px;
+            display: inline-block;
+            cursor: pointer;
+            list-style: none;
+            text-align: center;
+            border: 5px solid transparent;
+
+            @include media-breakpoint-down(lg) {
+                width: 100px;
+            }
+        }
+
+        img {
+            vertical-align: bottom;
+            object-fit: cover;
+            height: 100px;
+        }
+
+        .tns-nav-active {
+            background: none;
+            border: 5px solid #000000;
+        }
+    }
+
+    .controls {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+
+        .prev {
+            left: calc(100% - 50rem);
+        }
+
+        .next {
+            right: calc(100% - 50rem);
+        }
+
+        @include media-breakpoint-down(lg) {
+            .prev {
+                left: 0;
+            }
+
+            .next {
+                right: 0;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            .prev, .next {
+                display: none;
+            }
+        }
+
+        li {
+            z-index: 99;
+            display: block;
+            position: absolute;
+            height: 50px;
+            font-size: 3rem;
+            color: black;
+            margin-top: -70px;
+            cursor: pointer;
+            transition: background 0.3s;
+            list-style: none;
+
+            .fas {
+                display: inline-block;
+                max-width: 100%;
+                vertical-align: middle;
+            }
+
+            .fas:not(.tns-lazy-img), .lazyload i {
+                height: auto;
+            }
+        }
+    }
+}
