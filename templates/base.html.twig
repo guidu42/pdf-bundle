@@ -10,6 +10,7 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('shared-scripts') }}
+        {% block javascript_custom %}{% endblock %}
     {% endblock %}
 </head>
 <body>

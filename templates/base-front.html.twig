@@ -3,10 +3,15 @@
     <link rel="stylesheet" href="{{ asset('build/front-style.css') }}"/>
 {% endblock %}
 
+{% block javascript_custom %}
+    {{ encore_entry_script_tags('front-scripts') }}
+{% endblock %}
+
 {% block navBar %}
     {% include 'front/components/header/nav-bar.html.twig' %}
 {% endblock %}
 
 {% block footer %}
-{% include 'front/components/footer/footer.html.twig' %}
+    {% include 'front/components/footer/footer.html.twig' %}
 {% endblock %}
+

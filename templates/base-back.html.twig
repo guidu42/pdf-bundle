@@ -3,6 +3,10 @@
     <link rel="stylesheet" href="{{ asset('build/back-style.css') }}"/>
 {% endblock %}
 
+{% block javascript_custom %}
+    {{ encore_entry_script_tags('back-scripts') }}
+{% endblock %}
+
 {% block sideNav %}
     <div class="container-fluid">
         <div class="row flex-nowrap">

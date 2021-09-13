@@ -58,6 +58,22 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
+    .copyFiles({
+        from: './assets/front/images',
+        to: 'images/front/[path][name].[ext]'
+    })
+
+    .copyFiles({
+        from: './assets/back/images',
+        to: 'images/back/[path][name].[ext]'
+    })
+
+    .copyFiles({
+        from: './assets/shared/images',
+        to: 'images/shared/[path][name].[ext]'
+    })
+
+
     //Backend style and scripts
     .addEntry('back-scripts', './assets/back/scripts/index.ts')
     .addStyleEntry('back-style', './assets/back/styles/index.scss')
