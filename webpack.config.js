@@ -73,21 +73,6 @@ Encore
         to: 'images/shared/[path][name].[ext]'
     })
 
-    .copyFiles({
-        from: 'node_modules/tinymce/skins',
-        to: 'skins/[path]/[name].[ext]'
-    })
-
-    .copyFiles({
-        from: 'node_modules/tinymce/themes',
-        to: 'themes/[path]/[name].[ext]'
-    })
-
-    .copyFiles({
-        from: 'node_modules/tinymce/icons',
-        to: 'icons/[path]/[name].[ext]'
-    })
-
 
     //Backend style and scripts
     .addEntry('back-scripts', './assets/back/scripts/index.ts')

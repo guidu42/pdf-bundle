@@ -21,6 +21,9 @@ class CustomPage
     #[ORM\Column(type: 'integer')]
     private $status;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $accessLink;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,6 +61,18 @@ class CustomPage
     public function setStatus($status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getAccessLink(): ?string
+    {
+        return $this->accessLink;
+    }
+
+    public function setAccessLink($accessLink): self
+    {
+        $this->accessLink = $accessLink;
 
         return $this;
     }
