@@ -1,0 +1,11 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}New CustomPage{% endblock %}
+
+{% block inner_body %}
+    <h1>Create new CustomPage</h1>
+
+    {{ include('back/page/custom_page/_form.html.twig') }}
+
+    <a href="{{ path('custom_page_index') }}">back to list</a>
+{% endblock %}

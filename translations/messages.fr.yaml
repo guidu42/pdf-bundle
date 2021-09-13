@@ -7,3 +7,8 @@ entity:
                 label: "Non actif"
             draffted:
                 label: "Supprimé"
+            label: "Statut"
+        title:
+            label: "Titre de la page"
+        content:
+            label: "Contenu de la page"

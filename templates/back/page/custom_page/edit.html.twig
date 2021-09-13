@@ -1,0 +1,13 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}Edit CustomPage{% endblock %}
+
+{% block inner_body %}
+    <h1>Edit CustomPage</h1>
+
+    {{ include('back/page/custom_page/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('custom_page_index') }}">back to list</a>
+
+    {{ include('back/page/custom_page/_delete_form.html.twig') }}
+{% endblock %}

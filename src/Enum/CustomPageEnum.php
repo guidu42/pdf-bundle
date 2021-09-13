@@ -8,7 +8,7 @@ class CustomPageEnum
 {
     const PAGE_ENABLE = 1;
     const PAGE_DISABLE = -1;
-    const PAGE_DRAFFTED = 0;
+    const PAGE_DRAFT = 0;
 
     /**
      * @param null|int $key
@@ -20,7 +20,7 @@ class CustomPageEnum
             return 'entity.custom_page.status.enable.label';
         } elseif ($key === self::PAGE_DISABLE) {
             return 'entity.custom_page.status.disable.label';
-        } elseif ($key === self::PAGE_DRAFFTED) {
+        } elseif ($key === self::PAGE_DRAFT) {
             return 'entity.custom_page.status.draffted.label';
         }
 
