@@ -1,0 +1,9 @@
+entity:
+    custom_page:
+        status:
+            enable:
+                label: "Actif"
+            disable:
+                label: "Non actif"
+            draffted:
+                label: "Supprimé"
