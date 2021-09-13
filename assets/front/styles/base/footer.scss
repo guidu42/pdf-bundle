@@ -1,0 +1,18 @@
+.site-footer {
+    background-color: black;
+    color: white;
+    font-weight: 300;
+    position: relative;
+    z-index: 5;
+    padding: 15px 20px;
+
+    .footer-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        p {
+            margin: 0;
+        }
+    }
+}
