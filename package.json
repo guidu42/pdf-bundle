@@ -21,6 +21,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-pro": "^5.15.4",
         "@popperjs/core": "^2.10.1",
         "bootstrap": "^5.1.1",
         "ckeditor": "^4.12.1",
