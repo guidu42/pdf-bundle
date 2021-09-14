@@ -6,33 +6,43 @@ use App\Entity\CustomPage;
 use App\Form\CustomPageType;
 use App\Repository\CustomPageRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('admin/custom-page')]
 class CustomPageController extends AbstractController
 {
     private CustomPageRepository $customPageRepository;
     private EntityManagerInterface $em;
+    private SluggerInterface $slugger;
+    private PaginatorInterface $paginator;
 
     /**
      * @param CustomPageRepository $customPageRepository
      * @param EntityManagerInterface $em
+     * @param SluggerInterface $slugger
+     * @param PaginatorInterface $paginator
      */
-    public function __construct(CustomPageRepository $customPageRepository, EntityManagerInterface $em)
+    public function __construct(CustomPageRepository $customPageRepository, EntityManagerInterface $em, SluggerInterface $slugger, PaginatorInterface $paginator)
     {
         $this->customPageRepository = $customPageRepository;
         $this->em = $em;
+        $this->slugger = $slugger;
+        $this->paginator = $paginator;
     }
 
+
     #[Route('/', name: 'custom_page_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $customPages = $this->customPageRepository->findAll();
+        $qb = $this->customPageRepository->getQbAll();
+        $pagination = $this->paginator->paginate($qb, $request->query->getInt('page', 1), 10);
         return $this->render('back/page/custom_page/index.html.twig', [
-            'custom_pages' => $customPages,
+            'custom_pages' => $pagination,
         ]);
     }
 
@@ -44,6 +54,8 @@ class CustomPageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $customPage->setAccessLink($this->slugger->slug($customPage->getTitle()));
             $this->em->persist($customPage);
             $this->em->flush();
 
@@ -71,6 +83,7 @@ class CustomPageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $customPage->setAccessLink($this->slugger->slug($customPage->getTitle()));
             $this->em->flush();
 
             return $this->redirectToRoute('custom_page_index', [], Response::HTTP_SEE_OTHER);

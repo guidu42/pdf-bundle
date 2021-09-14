@@ -11,6 +11,12 @@
     {% include 'front/components/header/nav-bar.html.twig' %}
 {% endblock %}
 
+{% block body %}
+    <div class="front-content">
+        {% block inner_body %}{% endblock %}
+    </div>
+{% endblock %}
+
 {% block footer %}
     {% include 'front/components/footer/footer.html.twig' %}
 {% endblock %}

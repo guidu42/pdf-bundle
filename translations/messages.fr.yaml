@@ -12,3 +12,39 @@ entity:
             label: "Titre de la page"
         content:
             label: "Contenu de la page"
+page:
+    admin:
+        dashboard:
+            title:
+                label: "Page d'admin principale"
+        crud:
+            global:
+                no_records:
+                    label: "Aucun résultat trouvé"
+                action:
+                    label: "Actions"
+                button:
+                    see:
+                        label: "Voir"
+                    edit:
+                        label: "Editer"
+                    delete:
+                        label: "Supprimer"
+                    add:
+                        label: "Ajouter"
+
+            custom_page:
+                table:
+                    title:
+                        label: "Titre"
+                    content:
+                        label: "Nombre de caractères"
+                        result: "%nb_char% caractères"
+                    status:
+                        label: "Statut"
+                    accessLink:
+                        label: "Lien d'accès"
+                        result: "Lien"
+                index:
+                    title:
+                        label: "Liste des pages sur mesure"

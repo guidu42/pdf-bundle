@@ -2,17 +2,18 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\CustomPage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CustomPageShowController extends AbstractController
 {
-    #[Route('/custom/page/show', name: 'custom_page_show')]
-    public function index(): Response
+    #[Route('/page/{accessLink}', name: 'custom_page_front_show')]
+    public function index(CustomPage $customPage): Response
     {
-        return $this->render('custom_page_show/index.html.twig', [
-            'controller_name' => 'CustomPageShowController',
+        return $this->render('front/page/custom_page_front_show/index.html.twig', [
+            'customPage' => $customPage
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\CustomPage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,8 @@ class CustomPageRepository extends ServiceEntityRepository
         parent::__construct($registry, CustomPage::class);
     }
 
-    // /**
-    //  * @return CustomPage[] Returns an array of CustomPage objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getQbAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('cp');
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CustomPage
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
