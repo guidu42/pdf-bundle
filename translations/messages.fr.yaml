@@ -32,6 +32,20 @@ page:
                         label: "Supprimer"
                     add:
                         label: "Ajouter"
+                    back_to_list:
+                        label: "Retour à la liste"
+                    save:
+                        label: "Sauvegarder"
+                modal:
+                    delete:
+                        title:
+                            label: "Etes vous sur de supprimer cet élément ?"
+                        button:
+                            cancel:
+                                label: "Annuler"
+                            delete:
+                                label: "Supprimer"
+
 
             custom_page:
                 table:
@@ -48,3 +62,9 @@ page:
                 index:
                     title:
                         label: "Liste des pages sur mesure"
+                new:
+                    title:
+                        label: "Ajouter une nouvelle page sur mesure"
+                edit:
+                    title:
+                        label: "Editer la page sur mesure %page_label%"

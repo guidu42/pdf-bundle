@@ -3,40 +3,45 @@
 {% block title %}{{ 'page.admin.crud.custom_page.index.title.label'|trans }}{% endblock %}
 
 {% block inner_crud_body %}
-    <h1>{{ 'page.admin.crud.custom_page.index.title.label'|trans }}</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>{{ 'page.admin.crud.custom_page.table.title.label'|trans }}</th>
-            <th>{{ 'page.admin.crud.custom_page.table.content.label'|trans }}</th>
-            <th>{{ 'page.admin.crud.custom_page.table.status.label'|trans }}</th>
-            <th>{{ 'page.admin.crud.custom_page.table.accessLink.label'|trans }}</th>
-            <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for custom_page in custom_pages %}
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': 'page.admin.crud.custom_page.index.title.label'|trans,
+        'add_button': absolute_url(path('custom_page_new'))
+    } %}
+    <div class="crud-content">
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{ custom_page.title }}</td>
-                <td>{{ 'page.admin.crud.custom_page.table.content.result'|trans({'%nb_char%':custom_page.content|length}) }}</td>
-                <td>{{ custom_page.status }}</td>
-                <td><a href="{{ absolute_url(path('custom_page_front_show', {'accessLink': custom_page.accessLink})) }}">{{ 'page.admin.crud.custom_page.table.accessLink.result'|trans }}</a></td>
-                <td>
-                    <a href="{{ path('custom_page_show', {'id': custom_page.id}) }}">{{ 'page.admin.crud.global.button.see.label'|trans }}</a>
-                    <a href="{{ path('custom_page_edit', {'id': custom_page.id}) }}">{{ 'page.admin.crud.global.button.edit.label'|trans }}</a>
-                </td>
+                <th>{{ 'page.admin.crud.custom_page.table.title.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.content.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.status.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.accessLink.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">{{ 'page.admin.crud.global.no_records.label'|trans }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="navigation">
-        {{ knp_pagination_render(custom_pages) }}
+            </thead>
+            <tbody>
+            {% for custom_page in custom_pages %}
+                <tr>
+                    <td>{{ custom_page.title }}</td>
+                    <td>{{ 'page.admin.crud.custom_page.table.content.result'|trans({'%nb_char%':custom_page.content|length}) }}</td>
+                    <td>{{ custom_page|get_key_enum_status|trans }}</td>
+                    <td>
+                        <a href="{{ absolute_url(path('custom_page_front_show', {'accessLink': custom_page.accessLink})) }}">{{ 'page.admin.crud.custom_page.table.accessLink.result'|trans }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('custom_page_show', {'id': custom_page.id}) }}" title="{{ 'page.admin.crud.global.button.see.label'|trans }}"><i class="fas fa-eye"></i></a>
+                        <a href="{{ path('custom_page_edit', {'id': custom_page.id}) }}" title="{{ 'page.admin.crud.global.button.edit.label'|trans }}"><i class="far fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">{{ 'page.admin.crud.global.no_records.label'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(custom_pages) }}
+        </div>
     </div>
-
-    <a href="{{ path('custom_page_new') }}">{{ 'page.admin.crud.global.button.add.label'|trans }}</a>
 {% endblock %}

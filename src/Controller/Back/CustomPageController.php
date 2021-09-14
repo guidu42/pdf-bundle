@@ -89,7 +89,7 @@ class CustomPageController extends AbstractController
             return $this->redirectToRoute('custom_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('custom_page/edit.html.twig', [
+        return $this->renderForm('back/page/custom_page/edit.html.twig', [
             'custom_page' => $customPage,
             'form' => $form,
         ]);

@@ -1,0 +1,14 @@
+.modal-crud {
+    .modal-header {
+        border-bottom: unset;
+    }
+
+    .modal-footer {
+        border-top: unset;
+        justify-content: center;
+    }
+
+    p {
+        margin: 0;
+    }
+}

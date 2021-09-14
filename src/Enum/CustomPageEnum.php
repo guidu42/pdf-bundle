@@ -27,7 +27,6 @@ class CustomPageEnum
         return '';
     }
 
-
     public static function getFormChoices(): array
     {
         $choices = [];

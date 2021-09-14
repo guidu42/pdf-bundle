@@ -1,3 +1,45 @@
 .crud-drosalys {
     width: 100%;
 }
+
+.crud-content {
+    margin-top: 2rem;
+}
+
+
+.crud-fixed-head {
+    background-color: #FFF;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    //box-shadow: 0 0 10px rgb(63 84 175 / 27%);
+    padding: 1.5rem;
+
+    .lateral-crud-icon-path {
+        display: flex;
+        justify-content: flex-end;
+
+        .content-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            a, button {
+                margin-right: 5px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 200px;
+        height: 1px;
+        background-color: $primary-color;
+        left: calc(50% - 100px);
+    }
+}
