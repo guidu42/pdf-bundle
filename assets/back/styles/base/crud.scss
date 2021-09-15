@@ -4,6 +4,12 @@
 
 .crud-content {
     margin-top: 2rem;
+
+    table {
+        i {
+            color: $primary-color;
+        }
+    }
 }
 
 
@@ -14,7 +20,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    //box-shadow: 0 0 10px rgb(63 84 175 / 27%);
     padding: 1.5rem;
 
     .lateral-crud-icon-path {

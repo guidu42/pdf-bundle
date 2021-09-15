@@ -29,8 +29,14 @@
                         <a href="{{ absolute_url(path('custom_page_front_show', {'accessLink': custom_page.accessLink})) }}">{{ 'page.admin.crud.custom_page.table.accessLink.result'|trans }}</a>
                     </td>
                     <td>
-                        <a href="{{ path('custom_page_show', {'id': custom_page.id}) }}" title="{{ 'page.admin.crud.global.button.see.label'|trans }}"><i class="fas fa-eye"></i></a>
-                        <a href="{{ path('custom_page_edit', {'id': custom_page.id}) }}" title="{{ 'page.admin.crud.global.button.edit.label'|trans }}"><i class="far fa-edit"></i></a>
+                        {% include 'back/components/partials/crud-action-td.html.twig' with {
+                            'see_button': absolute_url(path('custom_page_show', {'id': custom_page.id})),
+                            'edit_button': absolute_url(path('custom_page_edit', {'id': custom_page.id})),
+                            'delete_partial': {
+                                'partial': 'back/page/custom_page/_delete_form.html.twig',
+                                'ref': custom_page.id
+                            }
+                        } %}
                     </td>
                 </tr>
             {% else %}
