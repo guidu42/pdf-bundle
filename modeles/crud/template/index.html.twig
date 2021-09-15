@@ -1,0 +1,58 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}__TRANS_TITLE__{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': '__TRANS_TITLE__',
+        'add_button': absolute_url(path('__PATH_CRUD_NEW__')),
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                __TRANS_TITLE__
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>__ENTITY_FIELD_TRANS__</th>
+                <th>__ENTITY_FIELD_TRANS__</th>
+                <th>__ENTITY_FIELD_TRANS__</th>
+                <th>__ENTITY_FIELD_TRANS__</th>
+{#                ACTIONS BELLOW#}
+                <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for __ENTITY__ in __PAGINATION_ENTITIES__ %}
+                <tr>
+                    <td>__ENTITY_VALUE__</td>
+                    <td>__ENTITY_VALUE__</td>
+                    <td>__ENTITY_VALUE__</td>
+                    <td>__ENTITY_VALUE__</td>
+                    <td>
+                        {% include 'back/components/partials/crud-action-td.html.twig' with {
+                            'see_button': absolute_url(path('__PATH_SHOW__', {'id': __ENTITY.id__})),
+                            'edit_button': absolute_url(path('__PATH_SHOW__', {'id': __ENTITY.id__})),
+                            'delete_partial': {
+                                'partial': '__DELETE_FORM_TWIG_PATH__',
+                                'ref': __REFERENCE_ENTITY_ID__
+                            }
+                        } %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">{{ 'page.admin.crud.global.no_records.label'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ knp_pagination_render(__PAGINATION_ENTITIES__) }}
+        </div>
+    </div>
+{% endblock %}

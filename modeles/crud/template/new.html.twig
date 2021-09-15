@@ -1,0 +1,28 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}__TRANS_TITLE__{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': '__TRANS_TITLE__',
+        'save_form': {
+            'type': 'add',
+
+            __--if ref bellow is null, will submit the first form found, you can pass a form id instead--__
+
+            'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': '__TITLE_INDEX_TRANS__', 'linkSymf': '__PATH_INDEX__'},
+                '__CURRENT_PAGE_NEW_TITLE__'
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        {{ include('__ACTUAL_FORM_TWIG_PATH__') }}
+    </div>
+
+{% endblock %}
