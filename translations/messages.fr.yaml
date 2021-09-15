@@ -12,3 +12,18 @@ entity:
             label: "Titre de la page"
         content:
             label: "Contenu de la page"
+page:
+    admin:
+        dashboard:
+            title:
+                label: "Page d'Admin Principale"
+menu:
+    home:
+        title:
+            label: "Accueil"
+    custom-page:
+        title:
+            label: "Pages personnalisées"
+    custom-page-new:
+        title:
+            label: "Nouvelle page"

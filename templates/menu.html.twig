@@ -1,0 +1,10 @@
+{% extends '@KnpMenu/menu.html.twig' %}
+
+
+{% block label %}
+    {%- set icon = item.extra('icon', false) -%}
+    {%- if icon is not same as(false) -%}
+    <i class="{{ icon }}"></i>{{ ' ' }}
+    {%- endif -%}
+    {{- parent() -}}
+{% endblock %}
