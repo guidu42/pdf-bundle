@@ -40,7 +40,7 @@ class CustomPageController extends AbstractController
     public function index(Request $request): Response
     {
         $qb = $this->customPageRepository->getQbAll();
-        $pagination = $this->paginator->paginate($qb, $request->query->getInt('page', 1), 5);
+        $pagination = $this->paginator->paginate($qb, $request->query->getInt('page', 1), 10);
         return $this->render('back/page/custom_page/index.html.twig', [
             'custom_pages' => $pagination,
         ]);
