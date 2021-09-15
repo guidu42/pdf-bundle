@@ -6,11 +6,11 @@
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
         'title_page': '__TRANS_TITLE__',
-        'add_button': absolute_url(path('__PATH_CRUD_NEW__')),
+        'add_button': absolute_url(path('__PATH_NEW__')),
         breadcrumb: {
             'type': 'back',
             'items': [
-                __TRANS_TITLE__
+                "__TRANS_TITLE__"
             ]
         }
     } %}
@@ -36,10 +36,10 @@
                     <td>
                         {% include 'back/components/partials/crud-action-td.html.twig' with {
                             'see_button': absolute_url(path('__PATH_SHOW__', {'id': __ENTITY.id__})),
-                            'edit_button': absolute_url(path('__PATH_SHOW__', {'id': __ENTITY.id__})),
+                            'edit_button': absolute_url(path('__PATH_EDIT__', {'id': __ENTITY.id__})),
                             'delete_partial': {
                                 'partial': '__DELETE_FORM_TWIG_PATH__',
-                                'ref': __REFERENCE_ENTITY_ID__
+                                'ref': __ENTITY.id__
                             }
                         } %}
                     </td>

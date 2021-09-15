@@ -6,7 +6,7 @@
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
         'title_page': '__TRANS_TITLE__',
-        'edit_button': absolute_url(path('__PATH_CRUD_EDIT__', {'id': __ENTITY.id__})),
+        'edit_button': absolute_url(path('__PATH_EDIT__', {'id': __ENTITY.id__})),
         'delete_partial': {
             'partial': '__DELETE_FORM_TWIG_PATH__',
             'ref': __ENTITY.id__
