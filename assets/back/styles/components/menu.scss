@@ -1,0 +1,52 @@
+.back-menu {
+  background: $bg-color;
+  width: 15% !important;
+
+  @include media-breakpoint-up(sm) {
+    width: auto !important;
+  }
+
+  ul {
+    list-style-type: none;
+
+    a {
+      text-decoration: none;
+      color: white;
+      visibility: hidden;
+
+      &:hover {
+        color: #b3b3b3;
+      }
+
+      @include media-breakpoint-up(sm) {
+        visibility: visible;
+      }
+    }
+
+    li {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    i {
+      padding-right: 1rem;
+      visibility: initial;
+
+      @include media-breakpoint-up(sm) {
+        visibility: initial;
+      }
+    }
+  }
+
+  .main-list {
+    padding-inline-start: 5.5rem;
+
+    @include media-breakpoint-up(sm) {
+      padding-inline-start: 1rem;
+    }
+  }
+
+  .menu_level_1 {
+    padding-left: 3rem;
+  }
+}

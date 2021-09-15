@@ -16,7 +16,7 @@ page:
     admin:
         dashboard:
             title:
-                label: "Page d'admin principale"
+                label: "Page d'Admin principale"
         crud:
             global:
                 no_records:
@@ -68,3 +68,13 @@ page:
                 edit:
                     title:
                         label: "Editer la page sur mesure %page_label%"
+menu:
+    home:
+        title:
+            label: "Accueil"
+    custom-page:
+        title:
+            label: "Pages personnalisées"
+    custom-page-new:
+        title:
+            label: "Nouvelle page"
