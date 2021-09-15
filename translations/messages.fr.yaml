@@ -16,7 +16,7 @@ page:
     admin:
         dashboard:
             title:
-                label: "Page d'Admin principale"
+                label: "Bienvenue sur votre espace d'administration"
         crud:
             global:
                 no_records:
@@ -78,6 +78,8 @@ menu:
     custom-page-new:
         title:
             label: "Nouvelle page"
+    back_to_site:
+        label: "Retour au site"
 breadcrumb:
     back:
         home:
