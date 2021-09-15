@@ -61,13 +61,13 @@ page:
                         result: "Lien"
                 index:
                     title:
-                        label: "Liste des pages sur mesure"
+                        label: "Liste des pages personnalisées"
                 new:
                     title:
-                        label: "Ajouter une nouvelle page sur mesure"
+                        label: "Ajouter une nouvelle page personnalisée"
                 edit:
                     title:
-                        label: "Editer la page sur mesure %page_label%"
+                        label: "Editer la page personnalisée %page_label%"
 menu:
     home:
         title:
