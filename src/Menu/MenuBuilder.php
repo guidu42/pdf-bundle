@@ -30,13 +30,13 @@ class MenuBuilder
         $menu->addChild('Home', [
             'route' => 'admin',
             'label' => 'menu.home.title.label',
-            'extras' => array('safe_label' => true, 'icon' =>'fas fa-home'),
+            'extras' => array('safe_label' => true, 'icon' =>'fas fa-home', 'selected_route' => 'admin'),
         ]);
 
         $menu->addChild('Custom Page Index', [
             'route' => 'custom_page_index',
             'label' => 'menu.custom-page.title.label',
-            'extras' => array('safe_label' => true, 'icon' =>'fas fa-pen'),
+            'extras' => array('safe_label' => true, 'icon' =>'fas fa-pen', 'selected_route' => 'custom_page_index'),
         ]);
 
         //ADD A CHILD HERE

@@ -68,4 +68,13 @@
         }
     }
 
+    .label-menu-elements {
+        color: #FFF;
+        transition-duration: 0.2s;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
 }
