@@ -14,7 +14,7 @@
         {% block javascript_custom %}{% endblock %}
     {% endblock %}
 </head>
-<body>
+<body class="{% block bodyClass %}{% endblock %}">
 {% block navBar %}{% endblock %}
 {% block sideNav %}{% endblock %}
 {% block body %}{% endblock %}

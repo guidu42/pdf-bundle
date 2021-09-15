@@ -6,7 +6,6 @@
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
         'title_page': 'page.admin.crud.custom_page.edit.title.label'|trans({'%page_label%': custom_page.title}),
-        'list_button': absolute_url(path('custom_page_index')),
         'delete_partial': {
             'partial': 'back/page/custom_page/_delete_form.html.twig',
             'ref': custom_page.id

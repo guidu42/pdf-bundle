@@ -19,7 +19,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     z-index: 99;
 
     .lateral-crud-icon-path {
@@ -42,9 +43,22 @@
         content: "";
         position: absolute;
         bottom: 0;
-        width: 200px;
-        height: 1px;
+        width: 80%;
+        height: 3px;
         background-color: $primary-color;
-        left: calc(50% - 100px);
+        left: 10%;
+    }
+
+    @include media-breakpoint-down(md) {
+        h1 {
+            font-size: 1rem;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+
+        nav {
+            display: none;
+        }
     }
 }

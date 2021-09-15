@@ -1,0 +1,20 @@
+.admin-pannel {
+    .table {
+        box-shadow: 0px 0px 7px 2px #0000000f;
+        tr:nth-child(even) {
+            background-color: $primary-color-light;
+        }
+
+        thead {
+            background-color: $primary-color;
+            color: #FFF;
+            height: 60px;
+
+            tr {
+                th {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}

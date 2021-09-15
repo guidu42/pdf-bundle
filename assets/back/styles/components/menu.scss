@@ -1,9 +1,9 @@
 .back-menu {
     background: $bg-color;
-    width: 15% !important;
+    width: 290px !important;
 
-    @include media-breakpoint-up(sm) {
-        width: auto !important;
+    @include media-breakpoint-down(sm) {
+        width: 70px !important;
     }
 
     ul {
