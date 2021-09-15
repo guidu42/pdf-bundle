@@ -9,6 +9,17 @@
     }
 
     p {
-        margin: 0;
+        margin-bottom: 0;
+        margin-top: -20px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: $primary-color;
+            font-size: 28px;
+            margin-right: 5px;
+        }
     }
 }
