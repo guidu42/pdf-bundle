@@ -10,6 +10,13 @@
         'save_form': {
             'type': 'add',
             'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.custom_page.index.title.label'|trans, 'linkSymf': 'custom_page_index'},
+                'page.admin.crud.custom_page.new.title.label'|trans
+            ]
         }
     } %}
     <div class="crud-content">

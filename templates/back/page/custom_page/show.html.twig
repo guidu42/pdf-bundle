@@ -11,6 +11,13 @@
         'delete_partial': {
             'partial': 'back/page/custom_page/_delete_form.html.twig',
             'ref': custom_page.id
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.custom_page.index.title.label'|trans, 'linkSymf': 'custom_page_index'},
+                custom_page.title
+            ]
         }
     } %}
     <div class="crud-content">
@@ -22,7 +29,7 @@
             </tr>
             <tr>
                 <th>{{ 'page.admin.crud.custom_page.table.content.label'|trans }}</th>
-                <td>{{ custom_page.content }}</td>
+                <td>{{ 'page.admin.crud.custom_page.table.content.result'|trans({'%nb_char%':custom_page.content|length}) }}</td>
             </tr>
             <tr>
                 <th>{{ 'page.admin.crud.custom_page.table.status.label'|trans }}</th>

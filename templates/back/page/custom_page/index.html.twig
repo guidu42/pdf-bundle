@@ -6,7 +6,13 @@
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
         'title_page': 'page.admin.crud.custom_page.index.title.label'|trans,
-        'add_button': absolute_url(path('custom_page_new'))
+        'add_button': absolute_url(path('custom_page_new')),
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+            'page.admin.crud.custom_page.index.title.label'|trans
+            ]
+        }
     } %}
     <div class="crud-content">
         <table class="table">

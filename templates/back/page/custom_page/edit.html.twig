@@ -14,6 +14,13 @@
         'save_form': {
             'type': 'edit',
             'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.custom_page.index.title.label'|trans, 'linkSymf': 'custom_page_index'},
+                'page.admin.crud.custom_page.edit.title.label'|trans({'%page_label%': custom_page.title})
+            ]
         }
     } %}
 
