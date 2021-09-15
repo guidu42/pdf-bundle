@@ -1,0 +1,175 @@
+.gdpr-module {
+    z-index: 9999;
+    display: none;
+
+    > div {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 999999999;
+        background: rgba(0, 0, 0, 0.65);
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .gdpr-module-dialog {
+        background: white;
+        padding: 40px;
+        width: 95%;
+        max-width: 720px;
+        overflow-y: auto;
+        border: solid 1px $main-color;
+        border-radius: 5px;
+
+
+        @include media-breakpoint-down(sm) {
+            height: 95%;
+            overflow-y: scroll;
+        }
+    }
+
+    .gdpr-module-actions {
+        button {
+            @include media-breakpoint-down(sm) {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .gdpr-module-content {
+        @include media-breakpoint-down(sm) {
+            padding: 1rem;
+        }
+
+        .gdpr-module-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 0.5rem;
+
+            img {
+                width: 15%;
+                padding-bottom: 1rem;
+
+                @include media-breakpoint-down(sm) {
+                    width: 30%;
+                }
+            }
+
+            h2 {
+                color: black;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-left: 3rem;
+
+                @include media-breakpoint-down(sm) {
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 5rem;
+
+            @include media-breakpoint-down(sm) {
+                margin-bottom: 2rem;
+            }
+        }
+
+        .trackers-choices {
+            display: none;
+
+            > div {
+                padding-top: 1rem;
+                border-top: 1px solid #cccccc;
+                margin-top: 1rem;
+                display: flex;
+                justify-content: space-between;
+
+                @include media-breakpoint-down(sm) {
+                    flex-wrap: wrap;
+                }
+            }
+
+            .choices {
+                @include media-breakpoint-down(sm) {
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .validate {
+                border: solid 1px $main-color;
+                border-radius: 5px;
+                padding: 5px 10px;
+
+                @include media-breakpoint-down(sm) {
+                    width: 100%;
+                }
+
+                button {
+                    outline: inherit;
+                    font: inherit;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    color: $main-color;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+
+                    @include media-breakpoint-down(sm) {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .item {
+                .tracker-name {
+                    position: relative;
+                    top: 3px;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    .gdpr-module-actions {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+
+        @include media-breakpoint-down(sm) {
+            flex-direction: column;
+        }
+
+        button {
+            border: solid 1px $main-color;
+            border-radius: 5px;
+            padding: 15px 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            width: calc(96%/3);
+
+            @include media-breakpoint-down(sm) {
+                width: auto;
+            }
+        }
+
+        .accept-btn {
+            background: $main-color;
+            color: white;
+        }
+
+        .config-button, .refuse-btn {
+            background: white;
+            color: $main-color;
+            border-color: $main-color solid 1px;
+        }
+    }
+}

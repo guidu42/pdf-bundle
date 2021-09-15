@@ -85,3 +85,20 @@ breadcrumb:
     front:
         home:
             label: "Page d'accueil"
+
+gdpr_banner:
+    title: "Nous avons besoin de votre consentement"
+    content: "
+        <p>
+            Afin d'analyser le trafic de notre site Web, activer les fonctionnalités liées aux réseaux sociaux, et vous proposer un contenu personnalisé, nous avons besoin que vous acceptiez que les cookies soient placés par votre navigateur. Cela impliquera le traitement de vos informations personnelles, y compris votre adresse IP et votre comportement de navigation. Pour plus d'informations, veuillez consulter notre Politique de cookies
+        </p>
+
+        <p>
+            Voulez-vous accepter ces cookies ?
+        </p>
+    "
+    btn:
+        accept: "J'accepte tous les cookies"
+        config: "Configurer les préférences"
+        valid: "Valider"
+        refuse: "Je refuse tous les cookies"

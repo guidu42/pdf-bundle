@@ -1,0 +1,46 @@
+<div class="gdpr-module" id="gdpr-module">
+    <div>
+        <div class="gdpr-module-dialog">
+            <div class="gdpr-module-content">
+                <div class="gdpr-module-title" id="gdpr-title">
+                    <h2>
+                        {{ 'gdpr_banner.title' | trans }}
+                    </h2>
+                </div>
+
+                <div id="gdpr-content">
+                    {{ 'gdpr_banner.content' | trans | raw }}
+                </div>
+
+                <div class="gdpr-module-actions">
+                    <button class="config-button" id="config-btn">
+                        {{ 'gdpr_banner.btn.config'|trans }}
+                    </button>
+
+                    <button class="refuse-btn" id="refuse-gdpr">
+                        {{ 'gdpr_banner.btn.refuse'|trans }}
+                    </button>
+
+                    <button class="accept-btn" id="accept-btn">
+                        {{ 'gdpr_banner.btn.accept'|trans }}
+                    </button>
+                </div>
+
+                <div class="trackers-choices" id="gdpr-config">
+                    <div>
+                        <div class="choices" id="gdpr-trackers">
+                            {# Trackers checkboxes will be autofilled here #}
+                        </div>
+                        <div class="validate">
+                            <button class="accept-btn" id="valid-config-gdpr">
+                                {{ 'gdpr_banner.btn.valid'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/gdpr/tracker-checkbox-template.html.twig' %}
