@@ -39,11 +39,12 @@ class MenuBuilder
             'extras' => array('safe_label' => true, 'icon' =>'fas fa-pen'),
         ]);
 
-        $menu['Custom Page Index']
-            ->addChild('New', [
-                'route' => 'custom_page_new',
-                'label' => 'menu.custom-page-new.title.label',
-                ]);
+        //ADD A CHILD HERE
+//        $menu['Custom Page Index']
+//            ->addChild('New', [
+//                'route' => 'custom_page_new',
+//                'label' => 'menu.custom-page-new.title.label',
+//                ]);
 
         // foreach ($menu as $child) {
         //   echo $child->getLabel();

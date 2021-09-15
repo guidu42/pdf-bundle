@@ -12,10 +12,13 @@
         <div class="row flex-nowrap">
             <div class="back-menu col-auto col-md-3 col-xl-2 px-sm-2 px-0">
                 <div class="menu-content d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Menu</span>
-                    </a>
+                    <div class="div-admin-panel-logo">
+                        <a href="{{ path('home') }}"
+                           class="d-flex align-items-center text-decoration-none site-logo-admin-pannel">
+                            <img src="{{ asset('build/images/shared/site-logo.png') }}">
+
+                        </a>
+                    </div>
                     {{ knp_menu_render('main', {
                         'allow_safe_labels': true,
                         'template': 'menu.html.twig'
@@ -23,9 +26,9 @@
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                           id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
+                                 class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">loser</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
