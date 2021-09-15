@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
 #[AsCommand(
@@ -94,6 +96,12 @@ class MakeDrosalysCrudCommand extends Command
         $string_to_replace = "__PAGINATION_ENTITIES__";
         $replace_with = $entityName . 's';
         $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
+
+        $filesystem->remove([$templateFilePath]);
+
+        if (is_dir($templateFilePathTemp)) {
+            $filesystem->rename($templateFilePathTemp, $templateFilePath, true);
+        }
 
         return Command::SUCCESS;
     }
