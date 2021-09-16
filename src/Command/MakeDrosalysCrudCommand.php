@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
+use function Symfony\Component\String\u;
 
 #[AsCommand(
     name: 'make:drosalys-crud',
@@ -22,7 +23,7 @@ class MakeDrosalysCrudCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('entityName', InputArgument::REQUIRED, 'Entity name');
+            ->addArgument('entity-name', InputArgument::REQUIRED, 'Entity name');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -30,7 +31,7 @@ class MakeDrosalysCrudCommand extends Command
 
         $output->writeln(['============',]);
         $filesystem = new Filesystem();
-        $class = $entity = $input->getArgument('entityName');
+        $class = $entity = $input->getArgument('entity-name');
 
         //CHECK SECURITY IF ENTITY EXIST
         if (!class_exists($class)) {
@@ -39,7 +40,7 @@ class MakeDrosalysCrudCommand extends Command
 
         if (!class_exists($class)) {
             $output->writeln('Entity ' . $class . ' not found !!!!');
-            return Command::FAILURE;
+            return self::FAILURE;
         }
 
         $ref = new \ReflectionClass($class);
@@ -52,8 +53,10 @@ class MakeDrosalysCrudCommand extends Command
         }
 
 
+
+
         //GET ENTITYNAME SNAKE CASE
-        $entityName = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity));
+        $entityName = u($entity)->snake();
 
         //CHECK IF CRUD TEMPLATE EXIST
         if (!$filesystem->exists('./templates/' . $entityName)) {
@@ -184,6 +187,8 @@ class MakeDrosalysCrudCommand extends Command
         $output->writeln(['============',]);
         $output->writeln(['============',]);
         $output->writeln(['All the key trans needed :']);
+
+        $output->writeln($arrayTransKey);
 
         foreach ($arrayTransKey as $transKey) {
             $output->writeln([$transKey]);
