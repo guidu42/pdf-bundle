@@ -65,7 +65,7 @@ class DecorateGenerator extends Generator
 
     public function generateTemplate(string $targetPath, string $templateName, array $variables = [])
     {
-        $this->decorated->generateTemplate($targetPath, $templateName, $variables);
+        $this->decorated->generateTemplate($targetPath, $this->overrideTemplate($templateName), $variables);
     }
 
     private function overrideTemplate(string $templateName): string
