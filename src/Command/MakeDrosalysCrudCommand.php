@@ -29,11 +29,10 @@ class MakeDrosalysCrudCommand extends Command
     {
 
         $output->writeln(['============',]);
-
         $filesystem = new Filesystem();
-
         $class = $entity = $input->getArgument('entityName');
 
+        //CHECK SECURITY IF ENTITY EXIST
         if (!class_exists($class)) {
             $class = 'App\\Entity\\' . $class;
         }
@@ -51,11 +50,12 @@ class MakeDrosalysCrudCommand extends Command
         foreach ($properties as $property) {
             array_push($arrayPropertiesSynthaxed, ucfirst($property->getName()));
         }
-//        dd($arrayPropertiesSynthaxed);
 
 
+        //GET ENTITYNAME SNAKE CASE
         $entityName = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity));
 
+        //CHECK IF CRUD TEMPLATE EXIST
         if (!$filesystem->exists('./templates/' . $entityName)) {
             $output->writeln('Original CRUD template not found !!!');
             return Command::FAILURE;
@@ -63,6 +63,7 @@ class MakeDrosalysCrudCommand extends Command
 
         $output->writeln(['Original CRUD template found ok...', '============',]);
 
+        //DEFINE NEEDED PATH VARIABLE (ORIGINAL CRUD, NEW CRUD, MODEL CRUD)
         $templateFilePath = './templates/' . $entityName;
         $templateFilePathTemp = $templateFilePath . '_temp';
         $modelPath = './modeles/crud/template';
@@ -78,6 +79,7 @@ class MakeDrosalysCrudCommand extends Command
         $arrayTransKey = [];
 
 
+        //CREATE TEMP CRUD FILES
         $filesystem->mkdir($templateFilePathTemp);
         $filesystem->copy($modelPath . '/_delete_form.html.twig', $templateFilePathTemp . '/_delete_form.html.twig');
         $filesystem->copy($modelPath . '/_form.html.twig', $templateFilePathTemp . '/_form.html.twig');
@@ -86,8 +88,9 @@ class MakeDrosalysCrudCommand extends Command
         $filesystem->copy($modelPath . '/new.html.twig', $templateFilePathTemp . '/new.html.twig');
         $filesystem->copy($modelPath . '/show.html.twig', $templateFilePathTemp . '/show.html.twig');
 
-        $output->writeln(['Temp CRUD template created ok...', '============',]);
+        $output->writeln(['Temp CRUD template created ok...', '============']);
 
+        //STOCK TEMP FILES NAMES IN AN ARRAY
         $arrayTemplates = [
             $templateFilePathTemp . '/_delete_form.html.twig',
             $templateFilePathTemp . '/_form.html.twig',
@@ -98,69 +101,36 @@ class MakeDrosalysCrudCommand extends Command
         ];
 
         //REPLACE GLOBAL VARIABLES ON TEMPLATES
-        $string_to_replace = "__ENTITY.id__";
-        $replace_with = $entityName . ".id";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
+        $arrayStringToReplaces = [
+            '__ENTITY.id__' => $entityName . ".id",
+            '__DELETE_FORM_TWIG_PATH__' => $entityName . "/_delete_form.html.twig",
+            '__ACTUAL_FORM_TWIG_PATH__' => $entityName . "/_form.html.twig",
+            '__DELETE_PATH__' => $entityName . "_delete",
+            "__PATH_INDEX__" => $entityName . "_index",
+            "__PATH_NEW__" => $entityName . "_new",
+            "__PATH_SHOW__" => $entityName . "_show",
+            "__PATH_EDIT__" => $entityName . "_edit",
+            "__ENTITY__" => $entityName,
+            "__PAGINATION_ENTITIES__" => $entityName . 's'
+        ];
+        foreach ($arrayStringToReplaces as $key => $arrayStringToReplace) {
+            $this->replace_string_in_file($arrayTemplates, $key, $arrayStringToReplace);
+        }
 
-        $string_to_replace = '__DELETE_FORM_TWIG_PATH__';
-        $replace_with = $entityName . "/_delete_form.html.twig";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
 
-        $string_to_replace = '__ACTUAL_FORM_TWIG_PATH__';
-        $replace_with = $entityName . "/_form.html.twig";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = '__DELETE_PATH__';
-        $replace_with = $entityName . "_delete";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__PATH_INDEX__";
-        $replace_with = $entityName . "_index";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__PATH_NEW__";
-        $replace_with = $entityName . "_new";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__PATH_SHOW__";
-        $replace_with = $entityName . "_show";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__PATH_EDIT__";
-        $replace_with = $entityName . "_edit";
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__ENTITY__";
-        $replace_with = $entityName;
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__PAGINATION_ENTITIES__";
-        $replace_with = $entityName . 's';
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__TITLE_INDEX_TRANS__";
-        $key = "\"page.admin.crud." . $entityName . ".index.title.label\"";
-        $replace_with = $key . "|trans";
-        array_push($arrayTransKey, $key);
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__TITLE_EDIT_TRANS__";
-        $key = "\"page.admin.crud." . $entityName . ".edit.title.label\"";
-        $replace_with = $key . "|trans";
-        array_push($arrayTransKey, $key);
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__TITLE_NEW_TRANS__";
-        $key = "\"page.admin.crud." . $entityName . ".new.title.label\"";
-        $replace_with = $key . "|trans";
-        array_push($arrayTransKey, $key);
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
-
-        $string_to_replace = "__TITLE_SHOW_TRANS__";
-        $key = "\"page.admin.crud." . $entityName . ".show.title.label\"";
-        $replace_with = $key . "|trans";
-        array_push($arrayTransKey, $key);
-        $this->replace_string_in_file($arrayTemplates, $string_to_replace, $replace_with);
+        //REPLACE GLOBAL VARIABLES ON TEMPLATES BUT GET TRANS KEY NEEDED
+        $arrayStringToReplaceWithKeys = [
+            "__TITLE_INDEX_TRANS__" => 'index',
+            "__TITLE_EDIT_TRANS__" => 'edit',
+            "__TITLE_NEW_TRANS__" => 'new',
+            "__TITLE_SHOW_TRANS__" => 'show'
+        ];
+        foreach ($arrayStringToReplaceWithKeys as $key => $arrayStringToReplaceWithKey) {
+            $keyTrans = "\"page.admin.crud." . $entityName . "." . $arrayStringToReplaceWithKey . ".title.label\"";
+            $replace_with = $keyTrans . "|trans";
+            array_push($arrayTransKey, $keyTrans);
+            $this->replace_string_in_file($arrayTemplates, $key, $replace_with);
+        }
 
 
         //REPLACE THEAD ON INDEX
@@ -183,21 +153,24 @@ class MakeDrosalysCrudCommand extends Command
             $string_to_replace = '<th>' . $propertySynthaxed . '</th>';
             $key = "\"entity." . $entityName . "." . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $propertySynthaxed)) . ".label\"";
             array_push($arrayTransKey, $key);
-            $replace_with = "<th>{{ " .$key . "|trans }}</th>";
+            $replace_with = "<th>{{ " . $key . "|trans }}</th>";
             $this->replace_string_in_file([$templateFilePathTemp . '/index.html.twig', $templateFilePathTemp . '/show.html.twig',], $string_to_replace, $replace_with);
         }
 
         $output->writeln(['Replace needed variables on temp CRUD template ok...', '============',]);
 
+        //REMOVE ORIGINAL CRUD DIRECTORY
         $filesystem->remove([$templateFilePath]);
 
         $output->writeln(['DELETE Original CRUD ok...', '============',]);
 
 
+        //RENAME TEMP CRUD DIRECTORY
         if (is_dir($templateFilePathTemp)) {
             $filesystem->rename($templateFilePathTemp, $templateFilePath, true);
         }
 
+        //SHOW USER ALL FILES CREATED + ALL KEY NEEDED + REMINDER TO DO PAGINATION IN CONTROLLER:INDEX
         $output->writeln(['RENAME temporary CRUD ok...', '============',]);
         $output->writeln(['============',]);
         $output->writeln(['============',]);
