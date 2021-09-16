@@ -18,9 +18,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th>__ENTITY_FIELD_TRANS__</th>
-                <th>__ENTITY_FIELD_TRANS__</th>
-                <th>__ENTITY_FIELD_TRANS__</th>
+                <th>Id</th>
                 <th>__ENTITY_FIELD_TRANS__</th>
 {#                ACTIONS BELLOW#}
                 <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
@@ -29,9 +27,7 @@
             <tbody>
             {% for __ENTITY__ in __PAGINATION_ENTITIES__ %}
                 <tr>
-                    <td>__ENTITY_VALUE__</td>
-                    <td>__ENTITY_VALUE__</td>
-                    <td>__ENTITY_VALUE__</td>
+                    <td>{{ __ENTITY.id__ }}</td>
                     <td>__ENTITY_VALUE__</td>
                     <td>
                         {% include 'back/components/partials/crud-action-td.html.twig' with {
