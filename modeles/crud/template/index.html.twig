@@ -1,16 +1,16 @@
 {% extends 'layout/layout-back-office-crud.html.twig' %}
 
-{% block title %}__TRANS_TITLE__{% endblock %}
+{% block title %}{{ __TITLE_INDEX_TRANS__ }}{% endblock %}
 
 {% block inner_crud_body %}
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
-        'title_page': '__TRANS_TITLE__',
+        'title_page': __TITLE_INDEX_TRANS__,
         'add_button': absolute_url(path('__PATH_NEW__')),
         breadcrumb: {
             'type': 'back',
             'items': [
-                "__TRANS_TITLE__"
+                __TITLE_INDEX_TRANS__
             ]
         }
     } %}
@@ -18,8 +18,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>__ENTITY_FIELD_TRANS__</th>
+                __ENTITY_PROPERTY_INDEX__
 {#                ACTIONS BELLOW#}
                 <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
             </tr>
@@ -27,8 +26,7 @@
             <tbody>
             {% for __ENTITY__ in __PAGINATION_ENTITIES__ %}
                 <tr>
-                    <td>{{ __ENTITY.id__ }}</td>
-                    <td>__ENTITY_VALUE__</td>
+                    __ENTITY_VALUE_INDEX__
                     <td>
                         {% include 'back/components/partials/crud-action-td.html.twig' with {
                             'see_button': absolute_url(path('__PATH_SHOW__', {'id': __ENTITY.id__})),

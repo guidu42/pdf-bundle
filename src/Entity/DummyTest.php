@@ -14,6 +14,13 @@ class DummyTest
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $truc;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $trucMachinTest;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,4 +37,28 @@ class DummyTest
 
         return $this;
     }
+
+
+    public function getTruc()
+    {
+        return $this->truc;
+    }
+
+
+    public function setTruc($truc): void
+    {
+        $this->truc = $truc;
+    }
+
+    public function getTrucMachinTest()
+    {
+        return $this->trucMachinTest;
+    }
+
+    public function setTrucMachinTest($trucMachinTest): void
+    {
+        $this->trucMachinTest = $trucMachinTest;
+    }
+
+
 }

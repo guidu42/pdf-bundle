@@ -1,11 +1,11 @@
 {% extends 'layout/layout-back-office-crud.html.twig' %}
 
-{% block title %}__TRANS_TITLE__{% endblock %}
+{% block title %}{{ __TITLE_SHOW_TRANS__ }}{% endblock %}
 
 {% block inner_crud_body %}
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
-        'title_page': '__TRANS_TITLE__',
+        'title_page': __TITLE_SHOW_TRANS__,
         'edit_button': absolute_url(path('__PATH_EDIT__', {'id': __ENTITY.id__})),
         'delete_partial': {
             'partial': '__DELETE_FORM_TWIG_PATH__',
@@ -14,22 +14,15 @@
         breadcrumb: {
             'type': 'back',
             'items': [
-                {'name': '__TITLE_INDEX_TRANS__', 'linkSymf': '__PATH_INDEX__'},
-                '__CURRENT_PAGE_SHOW_TITLE__'
+                {'name': __TITLE_INDEX_TRANS__, 'linkSymf': '__PATH_INDEX__'},
+                __TITLE_SHOW_TRANS__
             ]
         }
     } %}
     <div class="crud-content">
         <table class="table">
             <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ __ENTITY.id__ }}</td>
-            </tr>
-            <tr>
-                <th>__ENTITY_FIELD_TRANS__</th>
-                <td>__ENTITY_VALUE__</td>
-            </tr>
+                __TBODY_SHOW__
             </tbody>
         </table>
     </div>

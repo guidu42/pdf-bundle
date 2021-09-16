@@ -1,11 +1,11 @@
 {% extends 'layout/layout-back-office-crud.html.twig' %}
 
-{% block title %}{{ __TITLE_NEW_TRANS__ }}{% endblock %}
+{% block title %}{{ "page.admin.crud.dummy_test.new.title.label"|trans }}{% endblock %}
 
 {% block inner_crud_body %}
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
-        'title_page': __TITLE_NEW_TRANS__,
+        'title_page': "page.admin.crud.dummy_test.new.title.label"|trans,
         'save_form': {
             'type': 'add',
             'ref': ''
@@ -13,13 +13,13 @@
         breadcrumb: {
             'type': 'back',
             'items': [
-                {'name': __TITLE_INDEX_TRANS__, 'linkSymf': '__PATH_INDEX__'},
-                __TITLE_NEW_TRANS__
+                {'name': "page.admin.crud.dummy_test.index.title.label"|trans, 'linkSymf': 'dummy_test_index'},
+                "page.admin.crud.dummy_test.new.title.label"|trans
             ]
         }
     } %}
     <div class="crud-content">
-        {{ include('__ACTUAL_FORM_TWIG_PATH__') }}
+        {{ include('dummy_test/_form.html.twig') }}
     </div>
 
 {% endblock %}

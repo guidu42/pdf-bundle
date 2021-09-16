@@ -1,11 +1,11 @@
 {% extends 'layout/layout-back-office-crud.html.twig' %}
 
-{% block title %}__TRANS_TITLE__{% endblock %}
+{% block title %}{{ __TITLE_EDIT_TRANS__ }}{% endblock %}
 
 {% block inner_crud_body %}
 
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
-        'title_page': '__TRANS_TITLE__',
+        'title_page': __TITLE_EDIT_TRANS__,
         'delete_partial': {
             'partial': '__DELETE_FORM_TWIG_PATH__',
             'ref': __ENTITY.id__
@@ -17,8 +17,8 @@
         breadcrumb: {
             'type': 'back',
             'items': [
-                {'name': '__TITLE_INDEX_TRANS__', 'linkSymf': '__PATH_INDEX__'},
-                '__CURRENT_PAGE_EDIT_TITLE__'
+                {'name': __TITLE_INDEX_TRANS__, 'linkSymf': '__PATH_INDEX__'},
+                __TITLE_EDIT_TRANS__
             ]
         }
     } %}

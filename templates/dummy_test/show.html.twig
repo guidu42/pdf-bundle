@@ -1,0 +1,46 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}{{ "page.admin.crud.dummy_test.show.title.label"|trans }}{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': "page.admin.crud.dummy_test.show.title.label"|trans,
+        'edit_button': absolute_url(path('dummy_test_edit', {'id': dummy_test.id})),
+        'delete_partial': {
+            'partial': 'dummy_test/_delete_form.html.twig',
+            'ref': dummy_test.id
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': "page.admin.crud.dummy_test.index.title.label"|trans, 'linkSymf': 'dummy_test_index'},
+                "page.admin.crud.dummy_test.show.title.label"|trans
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        <table class="table">
+            <tbody>
+                
+            <tr>
+                <th>{{ "entity.dummy_test.id.label"|trans }}</th>
+                <td>{{ dummy_test.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ "entity.dummy_test.name.label"|trans }}</th>
+                <td>{{ dummy_test.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ "entity.dummy_test.truc.label"|trans }}</th>
+                <td>{{ dummy_test.truc }}</td>
+            </tr>
+            <tr>
+                <th>{{ "entity.dummy_test.truc_machin_test.label"|trans }}</th>
+                <td>{{ dummy_test.trucMachinTest }}</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
