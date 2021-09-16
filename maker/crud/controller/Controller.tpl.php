@@ -44,7 +44,7 @@ class <?= $class_name ?> extends <?= $parent_class_name; ?><?= "\n" ?>
     {
 
     $qb = $<?= $repository_var ?>->getQbAll();
-    $pagination = $this->paginator->paginate($qb, $request->query->getInt('page', 1), 4);
+    $pagination = $this->paginator->paginate($qb, $request->query->getInt('page', 1), 15);
 
     return $this->render('<?= $templates_path ?>/index.html.twig', [
     '<?= $entity_twig_var_plural ?>' => $pagination,

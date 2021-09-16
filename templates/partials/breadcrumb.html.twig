@@ -23,7 +23,7 @@
                         {% set parameters = item.parameters %}
                     {% endif %}
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="{{ path(item.linkSymf, parameters) }}">{{ item.name }}</a>
+                        <a href="{{ path(item.linkSymf, parameters) }}">{{ item.name|trans }}</a>
                     </li>
                 {% endif %}
             {% endfor %}

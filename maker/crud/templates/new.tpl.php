@@ -1,9 +1,24 @@
-<?= $helper->getHeadPrintCode('New '.$entity_class_name) ?>
+{% extends 'layout/layout-back-office-crud.html.twig' %}
 
-{% block body %}
-    <h1>Create new <?= $entity_class_name ?></h1>
-    <p>test</p>
-    {{ include('<?= $route_name ?>/_form.html.twig') }}
+{% block title %}{{ 'page.admin.crud.<?= strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity_class_name)) ?>.new.title.label'|trans }}{% endblock %}
 
-    <a href="{{ path('<?= $route_name ?>_index') }}">back to list</a>
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': 'page.admin.crud.<?= strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity_class_name)) ?>.new.title.label',
+        'save_form': {
+            'type': 'add',
+            'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.<?= strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity_class_name)) ?>.index.title.label', 'linkSymf': '<?= $route_name ?>_index'},
+                'page.admin.crud.<?= strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $entity_class_name)) ?>.new.title.label'
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        {{ include('<?= $route_name ?>/_form.html.twig') }}
+    </div>
 {% endblock %}
