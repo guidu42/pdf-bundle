@@ -14,7 +14,6 @@ submitFormButtons.forEach((submitFormButton) => {
             forms.forEach((formElement) => {
                 if (!form) {
                     if (!formElement.hasAttribute('data-form-delete-model')) {
-                        console.log('je rentre');
                         form = formElement;
                     }
                 }
@@ -22,7 +21,6 @@ submitFormButtons.forEach((submitFormButton) => {
 
         }
         if (form !== null) {
-            console.log(form);
             form.submit();
         }
     })
