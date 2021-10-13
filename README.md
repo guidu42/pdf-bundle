@@ -52,6 +52,7 @@ base-front.html.twig
 A second for the back: 
 ```
 base-back.html.twig
+// Your user need to have ROLE_ADMIN to access the back's dashboard.
 ```
 A KnpMenu is already generated for the Back, you can find it in : Src/Menu/MenuBuilder.php
 
@@ -73,7 +74,20 @@ After the execution of the command, your work is now to :
 - Do the stuff you want with the generated Form.
 ```
 
-This starter also comes with a some modules : 
+Some Entities are also generated :
+```
+The standard User Entity, Everything for register/login/logout is alredy set up.
+```
+
+```
+CustomPage Entity, Offert the possibilty for an Admin to create Custom Pages for his Website.
+- The back setup is already done for this entity.
+```
+
+The GDPR modules (cookies) is also already configurated for the starter.
+
+
+This starter also comes with some modules : 
 ```
 PHP :
         "drosalys-web/object-extensions": "^1.2",
