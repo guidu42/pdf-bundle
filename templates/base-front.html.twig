@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets_custom %}
+    <link rel="stylesheet" href="{{ asset('build/front-style.css') }}"/>
+{% endblock %}
+
+{% block javascript_custom %}
+    {{ encore_entry_script_tags('front-scripts') }}
+{% endblock %}
+
+{% block navBar %}
+    {% include 'front/components/header/nav-bar.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="front-content">
+        {% block inner_body %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'front/components/footer/footer.html.twig' %}
+{% endblock %}
+

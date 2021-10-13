@@ -1,0 +1,25 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}{{ 'page.admin.crud.custom_page.new.title.label'|trans }}{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': 'page.admin.crud.custom_page.new.title.label'|trans,
+        'save_form': {
+            'type': 'add',
+            'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.custom_page.index.title.label'|trans, 'linkSymf': 'custom_page_index'},
+                'page.admin.crud.custom_page.new.title.label'|trans
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        {{ include('back/page/custom_page/_form.html.twig') }}
+    </div>
+
+{% endblock %}

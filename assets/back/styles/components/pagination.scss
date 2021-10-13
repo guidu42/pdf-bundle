@@ -1,0 +1,59 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .page-item, .disabled {
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 5px;
+
+        .page-link {
+            background-color: #FFF;
+            border-radius: 5px !important;
+            border: 2px solid $primary-color;
+        }
+
+
+        a {
+            //border: 2px solid $primary-color;
+            border-radius: 5px !important;
+            color: $primary-color;
+            background-color: #FFF;
+        }
+
+        &.active {
+            background-color: $primary-color;
+
+            a {
+                color: #FFF;
+                background-color: $primary-color;
+            }
+
+            .page-link {
+                background-color: $primary-color;
+                border-radius: 5px !important;
+                border: 1px solid $primary-color;
+            }
+
+        }
+
+
+    }
+
+    .page-item {
+        transition-duration: 0.3s;
+
+        a {
+            &:hover {
+                background-color: $primary-color;
+                color: #FFF;
+            }
+        }
+
+
+        &.disabled {
+            display: none;
+        }
+    }
+}

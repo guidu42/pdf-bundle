@@ -1,0 +1,14 @@
+{% extends 'base-front.html.twig' %}
+{% dump %}
+
+{% block title %}Hello CustomPageShowController!{% endblock %}
+
+{% block inner_body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {{ customPage.content|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

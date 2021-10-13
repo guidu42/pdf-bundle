@@ -1,0 +1,28 @@
+@font-face {
+    font-family: $font-admin;
+    src: url('#{$font-path}/poppins/Poppins-Regular.woff') format('woff'),
+    url('#{$font-path}/poppins/Poppins-Regular.woff2') format('woff2'),
+    url('#{$font-path}/poppins/Poppins-Regular.otf') format('otf'),
+    url('#{$font-path}/poppins/Poppins-Regular.eot') format('eot'),
+    url('#{$font-path}/poppins/Poppins-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: $font-admin;
+    font-weight: 600;
+    src: url('#{$font-path}/poppins/Poppins-Medium.woff') format('woff'),
+    url('#{$font-path}/poppins/Poppins-Medium.woff2') format('woff2'),
+    url('#{$font-path}/poppins/Poppins-Medium.otf') format('otf'),
+    url('#{$font-path}/poppins/Poppins-Medium.eot') format('eot'),
+    url('#{$font-path}/poppins/Poppins-Medium.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: $font-admin;
+    font-weight: bold;
+    src: url('#{$font-path}/poppins/Poppins-Bold.woff') format('woff'),
+    url('#{$font-path}/poppins/Poppins-Bold.woff2') format('woff2'),
+    url('#{$font-path}/poppins/Poppins-Bold.otf') format('otf'),
+    url('#{$font-path}/poppins/Poppins-Bold.eot') format('eot'),
+    url('#{$font-path}/poppins/Poppins-Bold.ttf') format('ttf');
+}

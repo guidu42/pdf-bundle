@@ -1,0 +1,30 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}{{ 'page.admin.crud.custom_page.edit.title.label'|trans({'%page_label%': custom_page.title}) }}{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': 'page.admin.crud.custom_page.edit.title.label'|trans({'%page_label%': custom_page.title}),
+        'delete_partial': {
+            'partial': 'back/page/custom_page/_delete_form.html.twig',
+            'ref': custom_page.id
+        },
+        'save_form': {
+            'type': 'edit',
+            'ref': ''
+        },
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                {'name': 'page.admin.crud.custom_page.index.title.label'|trans, 'linkSymf': 'custom_page_index'},
+                'page.admin.crud.custom_page.edit.title.label'|trans({'%page_label%': custom_page.title})
+            ]
+        }
+    } %}
+
+    <div class="crud-content">
+        {{ include('back/page/custom_page/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+{% endblock %}

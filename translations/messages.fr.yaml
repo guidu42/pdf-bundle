@@ -1,0 +1,106 @@
+entity:
+    custom_page:
+        status:
+            enable:
+                label: "Actif"
+            disable:
+                label: "Non actif"
+            draffted:
+                label: "Supprimé"
+            label: "Statut"
+        title:
+            label: "Titre de la page"
+        content:
+            label: "Contenu de la page"
+page:
+    admin:
+        dashboard:
+            title:
+                label: "Bienvenue sur votre espace d'administration"
+        crud:
+            global:
+                no_records:
+                    label: "Aucun résultat trouvé"
+                action:
+                    label: "Actions"
+                button:
+                    see:
+                        label: "Voir"
+                    edit:
+                        label: "Editer"
+                    delete:
+                        label: "Supprimer"
+                    add:
+                        label: "Ajouter"
+                    back_to_list:
+                        label: "Retour à la liste"
+                    save:
+                        label: "Sauvegarder"
+                modal:
+                    delete:
+                        title:
+                            label: "Etes vous sur de supprimer cet élément ?"
+                        button:
+                            cancel:
+                                label: "Annuler"
+                            delete:
+                                label: "Supprimer"
+
+
+            custom_page:
+                table:
+                    title:
+                        label: "Titre"
+                    content:
+                        label: "Nombre de caractères"
+                        result: "%nb_char% caractères"
+                    status:
+                        label: "Statut"
+                    accessLink:
+                        label: "Lien d'accès"
+                        result: "Lien"
+                index:
+                    title:
+                        label: "Liste des pages personnalisées"
+                new:
+                    title:
+                        label: "Ajouter une nouvelle page personnalisée"
+                edit:
+                    title:
+                        label: "Editer la page personnalisée %page_label%"
+menu:
+    home:
+        title:
+            label: "Accueil"
+    custom-page:
+        title:
+            label: "Pages personnalisées"
+    custom-page-new:
+        title:
+            label: "Nouvelle page"
+    back_to_site:
+        label: "Retour au site"
+breadcrumb:
+    back:
+        home:
+            label: "Tableau de bord"
+    front:
+        home:
+            label: "Page d'accueil"
+
+gdpr_banner:
+    title: "Nous avons besoin de votre consentement"
+    content: "
+        <p>
+            Afin d'analyser le trafic de notre site Web, activer les fonctionnalités liées aux réseaux sociaux, et vous proposer un contenu personnalisé, nous avons besoin que vous acceptiez que les cookies soient placés par votre navigateur. Cela impliquera le traitement de vos informations personnelles, y compris votre adresse IP et votre comportement de navigation. Pour plus d'informations, veuillez consulter notre Politique de cookies
+        </p>
+
+        <p>
+            Voulez-vous accepter ces cookies ?
+        </p>
+    "
+    btn:
+        accept: "J'accepte tous les cookies"
+        config: "Configurer les préférences"
+        valid: "Valider"
+        refuse: "Je refuse tous les cookies"

@@ -1,0 +1,59 @@
+{% extends 'layout/layout-back-office-crud.html.twig' %}
+
+{% block title %}{{ 'page.admin.crud.custom_page.index.title.label'|trans }}{% endblock %}
+
+{% block inner_crud_body %}
+
+    {% include 'back/components/partials/crud-fixed-header.html.twig' with {
+        'title_page': 'page.admin.crud.custom_page.index.title.label'|trans,
+        'add_button': absolute_url(path('custom_page_new')),
+        breadcrumb: {
+            'type': 'back',
+            'items': [
+                'page.admin.crud.custom_page.index.title.label'|trans
+            ]
+        }
+    } %}
+    <div class="crud-content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'page.admin.crud.custom_page.table.title.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.content.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.status.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.custom_page.table.accessLink.label'|trans }}</th>
+                <th>{{ 'page.admin.crud.global.action.label'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for custom_page in custom_pages %}
+                <tr>
+                    <td>{{ custom_page.title }}</td>
+                    <td>{{ 'page.admin.crud.custom_page.table.content.result'|trans({'%nb_char%':custom_page.content|length}) }}</td>
+                    <td>{{ custom_page|get_key_enum_status|trans }}</td>
+                    <td>
+                        <a href="{{ absolute_url(path('custom_page_front_show', {'accessLink': custom_page.accessLink})) }}">{{ 'page.admin.crud.custom_page.table.accessLink.result'|trans }}</a>
+                    </td>
+                    <td>
+                        {% include 'back/components/partials/crud-action-td.html.twig' with {
+                            'see_button': absolute_url(path('custom_page_show', {'id': custom_page.id})),
+                            'edit_button': absolute_url(path('custom_page_edit', {'id': custom_page.id})),
+                            'delete_partial': {
+                                'partial': 'back/page/custom_page/_delete_form.html.twig',
+                                'ref': custom_page.id
+                            }
+                        } %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">{{ 'page.admin.crud.global.no_records.label'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ knp_pagination_render(custom_pages) }}
+        </div>
+    </div>
+{% endblock %}

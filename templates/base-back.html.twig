@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets_custom %}
+    <link rel="stylesheet" href="{{ asset('build/back-style.css') }}"/>
+{% endblock %}
+
+{% block javascript_custom %}
+    {{ encore_entry_script_tags('back-scripts') }}
+{% endblock %}
+
+{% block bodyClass %}admin-pannel{% endblock %}
+
+{% block sideNav %}
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="back-menu col-md-3 col-xl-2 px-sm-2 px-0">
+                <div class="menu-content d-flex flex-column align-items-center align-items-sm-start justify-content-between px-3 pt-5 pb-5 text-white min-vh-100">
+                    <div>
+                        <div class="div-admin-panel-logo">
+                            <a href="{{ path('home') }}"
+                               class="d-flex align-items-center text-decoration-none site-logo-admin-pannel">
+                                <img src="{{ asset('build/images/shared/site-logo.png') }}">
+
+                            </a>
+                        </div>
+                        {{ knp_menu_render('main', {
+                            'allow_safe_labels': true,
+                            'template': 'menu.html.twig'
+                        }) }}
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <a href="{{ path('home') }}">
+                                    <div class="label-menu-elements">
+                                        <i class="fas fa-undo-alt"></i>
+                                        {{ 'menu.back_to_site.label'|trans }}
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container">
+                    {% block inner_body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

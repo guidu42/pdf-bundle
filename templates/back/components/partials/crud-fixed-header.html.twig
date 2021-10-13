@@ -1,0 +1,61 @@
+<div class="crud-fixed-head">
+    <div>
+        <h1>{{ title_page|trans }}</h1>
+        {% include 'partials/breadcrumb.html.twig' %}
+    </div>
+    <div class="lateral-crud-icon-path">
+        <div class="content-button">
+            {# button save change of form, POSSIBILITY TO PASS A REF FOR A SPECIAL FORM BY ID, IF NO REF IT JUST SUBMIT THE FIRST FORM FOUND #}
+            {% if save_form is defined %}
+                <button type="button" class="standard-crud-btn"
+                        data-btn-submit-form="{% if save_form.ref != '' %}{{ save_form.ref }}{% endif %}"
+                        title="{{ "page.admin.crud.global.button.save.label"|trans }}">
+                    <i class="fas fa-check"></i>
+                </button>
+            {% endif %}
+            {% if list_button is defined %}
+                <a href="{{ list_button }}" class="standard-crud-btn"
+                   title="{{ 'page.admin.crud.global.button.back_to_list.label'|trans }}"><i
+                            class="fas fa-undo"></i></a>
+            {% endif %}
+            {% if add_button is defined %}
+                <a href="{{ add_button }}" class="standard-crud-btn"
+                   title="{{ 'page.admin.crud.global.button.add.label'|trans }}"><i class="fas fa-plus"></i></a>
+            {% endif %}
+            {% if edit_button is defined %}
+                <a href="{{ edit_button }}" class="standard-crud-btn"
+                   title="{{ 'page.admin.crud.global.button.edit.label'|trans }}"><i class="far fa-edit"></i></a>
+            {% endif %}
+            {% if delete_partial is defined %}
+                <button type="button" class="standard-crud-btn" data-bs-toggle="modal"
+                        data-bs-target="#modal-delete-item{{ delete_partial.ref }}"
+                        title="{{ "page.admin.crud.global.button.delete.label"|trans }}">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if delete_partial is defined %}
+    <!-- Modal -->
+    <div class="modal fade modal-crud" id="modal-delete-item{{ delete_partial.ref }}" tabindex="-1"
+         aria-labelledby="modal-delete-item-label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><i class="fad fa-exclamation-triangle"></i> {{ 'page.admin.crud.global.modal.delete.title.label'|trans }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-standard"
+                            data-bs-dismiss="modal">{{ "page.admin.crud.global.modal.delete.button.cancel.label"|trans }}</button>
+                    {% include delete_partial.partial %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

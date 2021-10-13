@@ -1,0 +1,64 @@
+.crud-drosalys {
+    width: 100%;
+}
+
+.crud-content {
+    margin-top: 2rem;
+
+    table {
+        i {
+            color: $primary-color;
+        }
+    }
+}
+
+.crud-fixed-head {
+    background-color: #FFF;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    z-index: 99;
+
+    .lateral-crud-icon-path {
+        display: flex;
+        justify-content: flex-end;
+
+        .content-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            a, button {
+                margin-right: 5px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 80%;
+        height: 3px;
+        background-color: $primary-color;
+        left: 10%;
+    }
+
+    @include media-breakpoint-down(md) {
+        h1 {
+            font-size: 1rem;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+
+        nav {
+            display: none;
+        }
+    }
+}

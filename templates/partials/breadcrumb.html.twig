@@ -1,0 +1,32 @@
+{% if breadcrumb is defined and breadcrumb.items|length > 0 %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                {% if breadcrumb.type == 'back' %}
+                    <a href="{{ path('admin') }}">
+                        {{ 'breadcrumb.back.home.label'|trans }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('home') }}">
+                        {{ 'breadcrumb.front.home.label'|trans }}
+                    </a>
+                {% endif %}
+            </li>
+            {% for item in breadcrumb.items %}
+                {% if loop.last %}
+                    {% set name = item %}
+                    <li class="breadcrumb-item active" aria-current="page">{{ name|trans }}</li>
+                {% else %}
+                    {% if item.parameters is not defined %}
+                        {% set parameters = {} %}
+                    {% else %}
+                        {% set parameters = item.parameters %}
+                    {% endif %}
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="{{ path(item.linkSymf, parameters) }}">{{ item.name|trans }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </nav>
+{% endif %}

@@ -1,0 +1,55 @@
+.standard-crud-btn {
+    text-decoration: none;
+    padding: 7px 8px;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.3s;
+    color: $primary-color;
+    background-color: unset;
+    font-weight: bold;
+
+    i {
+        color: $primary-color;
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background-color: $primary-color;
+        color: #FFF;
+
+        i {
+            color: #FFF;
+        }
+    }
+}
+
+.btn-standard {
+    text-decoration: none;
+    padding: 5px 20px;
+    border: 2px solid $primary-color;
+    transition-duration: 0.3s;
+    color: $primary-color;
+    background-color: unset;
+    border-radius: 3px;
+
+
+    &:hover {
+        background-color: $primary-color;
+        color: #FFF;
+    }
+}
+
+.standard-crud-index-action {
+    background-color: unset;
+    border: none;
+    padding: 0;
+    margin-right: 2px;
+    margin-left: 2px;
+
+    i {
+        color: $primary-color;
+    }
+}

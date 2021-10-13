@@ -1,0 +1,12 @@
+{% extends '@KnpMenu/menu.html.twig' %}
+
+{% block label %}
+    {% set selected_route = item.extra('selected_route', false) %}
+    <div class="label-menu-elements">
+        {%- set icon = item.extra('icon', false) -%}
+        {%- if icon is not same as(false) -%}
+        <i class="{{ icon }}"></i>{{ ' ' }}
+        {%- endif -%}
+        {{- parent() -}}
+    </div>
+{% endblock %}
