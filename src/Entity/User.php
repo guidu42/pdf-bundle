@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 
 
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
-    #[ORM\Id, ORM\GeneratedValue(strategy: 'UUID'), ORM\Column(type: 'string', length: 36)]
+    #[ORM\Id, ORM\GeneratedValue(strategy: 'CUSTOM'), ORM\CustomIdGenerator(class: UuidGenerator::class),  ORM\Column(type: 'string', length: 36)]
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
