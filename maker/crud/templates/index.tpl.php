@@ -36,7 +36,7 @@
                 'see_button': absolute_url(path('<?= $route_name ?>_show', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>})),
                 'edit_button': absolute_url(path('<?= $route_name ?>_edit', {'<?= $entity_identifier ?>': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>})),
                 'delete_partial': {
-                    'partial': '<?= $route_name ?>/_delete_form.html.twig',
+                    'partial': '<?= $entity_twig_var_singular ?>/_delete_form.html.twig',
                     'ref': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>
                     }
                 } %}

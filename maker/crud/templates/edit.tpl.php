@@ -8,7 +8,7 @@
     {% include 'back/components/partials/crud-fixed-header.html.twig' with {
         'title_page': 'page.admin.crud.<?= $entity_twig_var_singular ?>.edit.title.label',
         'delete_partial': {
-            'partial': '<?= $route_name ?>/_delete_form.html.twig',
+            'partial': '<?= $entity_twig_var_singular ?>/_delete_form.html.twig',
             'ref': <?= $entity_twig_var_singular ?>.<?= $entity_identifier ?>
         },
         'save_form': {
@@ -25,7 +25,7 @@
     } %}
 
 <div class="crud-content">
-    {{ include('<?= $route_name ?>/_form.html.twig') }}
+    {{ include('<?= $entity_twig_var_singular ?>/_form.html.twig') }}
 </div>
 
 {% endblock %}

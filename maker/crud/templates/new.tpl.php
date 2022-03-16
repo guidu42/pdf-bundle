@@ -19,6 +19,6 @@
         }
     } %}
     <div class="crud-content">
-        {{ include('<?= $route_name ?>/_form.html.twig') }}
+        {{ include('<?= $templates_path ?>/_form.html.twig') }}
     </div>
 {% endblock %}

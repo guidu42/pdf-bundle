@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
 <?php if ($use_attributes) { ?>
-    #[Route('<?= $route_path ?>')]
+    #[Route('/admin<?= $route_path ?>')]
 <?php } else { ?>
     /**
     * @Route("<?= $route_path ?>")
