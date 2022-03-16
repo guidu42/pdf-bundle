@@ -18,12 +18,6 @@ Back : Only stuff For Back
 
 ### Installation process :
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/drosalys/starters/symfony-starter-v5.git
-git branch -M main
-git push -uf origin main
-```
 
 ```
 - composer install
@@ -53,6 +47,11 @@ A second for the back:
 ```
 base-back.html.twig
 // Your user need to have ROLE_ADMIN to access the back's dashboard.
+```
+
+You can set ROLE_ADMIN to user just by executing this command :
+```
+symfony console app:set-admin exemple@gmail.com
 ```
 A KnpMenu is already generated for the Back, you can find it in : Src/Menu/MenuBuilder.php
 
