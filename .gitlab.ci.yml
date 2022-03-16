@@ -1,0 +1,178 @@
+stages:
+    - build
+    - build-deploy
+    - deploy
+
+# Build
+build_php:
+    stage: build
+    image: drosalys/php-engine:8.0
+    before_script:
+        - composer selfupdate --2
+    script:
+        - composer install --no-suggest --dev -n
+        - rm -Rf var/cache/{dev,prod,test}
+        - rm -Rf var/log/{dev,prod,test}.log
+    artifacts:
+        name: 'VENDOR_${CI_COMMIT_SHORT_SHA}'
+        paths:
+            - vendor/
+        expire_in: 60 minutes
+    cache:
+        key: 'VENDOR_${CI_COMMIT_REF_NAME}'
+        policy: pull-push
+        paths:
+            - vendor/
+    only:
+        - merge_requests
+
+build_assets:
+    stage: build
+    image: node:14.18-stretch
+    before_script:
+        - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+        - npm config set "//npm.fontawesome.com/:_authToken" $FA_TOKEN
+    script:
+        - yarn install
+        #        - yarn global add gulp-cli
+        - yarn build
+    #        - gulp
+    artifacts:
+        name: 'ASSETS_${CI_COMMIT_SHORT_SHA}'
+        paths:
+            - ./public/build
+            - ./public/tinymce
+        expire_in: 60 minutes
+    cache:
+        key: 'NODE_${CI_COMMIT_REF_NAME}'
+        policy: pull-push
+        paths:
+            - node_modules/
+    only:
+        - merge_requests
+
+
+
+# Tests
+# No unit test yet.
+
+# Build Deploy
+# build_deploy_php_prod:
+#     stage: build-deploy
+#     image: drosalys/php-engine:8.0
+#     script:
+#         - export APP_ENV=prod
+#         - composer install --no-dev -o -a -n
+#     artifacts:
+#         name: 'PROD_VENDOR_${CI_COMMIT_SHORT_SHA}'
+#         paths:
+#             - vendor/
+#         expire_in: 1 month
+#     cache:
+#         key: 'PROD_${CI_COMMIT_REF_NAME}'
+#         policy: pull
+#         paths:
+#             - vendor/
+#     only:
+#         - /^v[0-9]+(\.[0-9]+){2}$/
+
+build_deploy_php_test:
+    stage: build-deploy
+    image: drosalys/php-engine:8.0
+    before_script:
+        - composer selfupdate --2
+    script:
+        - composer install --no-suggest --dev -n
+    artifacts:
+        name: 'TEST_VENDOR_${CI_COMMIT_SHORT_SHA}'
+        paths:
+            - vendor/
+        expire_in: 60 minutes
+    cache:
+        key: 'TEST_${CI_COMMIT_REF_NAME}'
+        policy: pull
+        paths:
+            - vendor/
+    only:
+        - /^v[0-9]+(\.[0-9]+){2}$/
+
+build_deploy_assets:
+    stage: build-deploy
+    image: node:14.18-stretch
+    before_script:
+        - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+        - npm config set "//npm.fontawesome.com/:_authToken" $FA_TOKEN
+    script:
+        - yarn install
+        - yarn build
+    artifacts:
+        name: 'ASSETS_DEPLOY_${CI_COMMIT_SHORT_SHA}'
+        paths:
+            - ./public/build
+            - ./public/tinymce
+        expire_in: 1 month
+    cache:
+        key: 'ASSETS_DEPLOY_${CI_COMMIT_REF_NAME}'
+        policy: pull-push
+        paths:
+            - node_modules/
+    only:
+        - /^v[0-9]+(\.[0-9]+){2}$/
+
+# Deploy
+# deploy_prod:
+#     when: manual
+#     stage: deploy
+#     image: liaohuqiu/rsync
+#     dependencies:
+#         - build_deploy_assets
+#         - build_deploy_php_prod
+#     before_script:
+#         - eval $(ssh-agent -s)
+#         - ssh-add <(echo "$PROD_SSH_KEY")
+#         - mkdir -p ~/.ssh
+#         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+#     script:
+#         - find . -type d -exec chmod 755 {} \;
+#         - find . -type f -exec chmod 644 {} \;
+#         - rsync -az -e "ssh -p $PROD_SSH_PORT" --delete --filter='protect var/*' --filter='protect public/media/*' --filter='protect public/uploads/*' --filter='protect public/manual_uploads/*' --filter='protect public/bundles/*' --exclude=.git --exclude=.env.local --exclude=.env.*.local . $PROD_USER@$PROD_SRV:$PROD_DIR/html
+#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,test}"
+#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "cd $PROD_DIR && docker-compose exec -u $PROD_UID:$PROD_GID -T php php bin/console doctrine:migrations:migrate -n"
+#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,test}"
+
+#     artifacts:
+#         name: "PROD_${CI_COMMIT_REF_NAME}"
+#         paths:
+#             - .
+#         expire_in: 1 week
+#     cache: {}
+#     only:
+#         - /^v[0-9]+(\.[0-9]+){2}$/
+
+deploy_test:
+    stage: deploy
+    image: liaohuqiu/rsync
+    dependencies:
+        - build_deploy_assets
+        - build_deploy_php_test
+    before_script:
+        - eval $(ssh-agent -s)
+        - ssh-add <(echo "$TEST_SSH_KEY")
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    script:
+        - find . -type d -exec chmod 755 {} \;
+        - find . -type f -exec chmod 644 {} \;
+        - rsync -az -e "ssh -p $TEST_SSH_PORT" --delete --filter='protect var/*' --filter='protect public/bundles/*' --exclude=.git --exclude=.env.local --exclude=.env.*.local . $TEST_USER@$TEST_SRV:$TEST_DIR/html
+        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,test}"
+        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "cd $TEST_DIR && docker-compose exec -u $TEST_UID:$TEST_GID -T php php bin/console doctrine:migrations:migrate -n"
+        #        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "cd $TEST_DIR && docker-compose exec -u $TEST_UID:$TEST_GID -T php php bin/console hautelook:fixtures:load --purge-with-truncate -n
+        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,test}"
+    artifacts:
+        name: "TEST_${CI_COMMIT_REF_NAME}"
+        paths:
+            - .
+        expire_in: 1 week
+    cache: {}
+    only:
+        - /^v[0-9]+(\.[0-9]+){2}$/
