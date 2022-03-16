@@ -7,11 +7,11 @@
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.39.2",
         "sass-loader": "^12.0.0",
+        "slugify": "^1.6.0",
         "stimulus": "^2.0.0",
         "ts-loader": "^9.0.0",
         "typescript": "^4.4.2",
-        "webpack-notifier": "^1.6.0",
-        "slugify": "^1.6.0"
+        "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -22,7 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-pro": "^5.15.4",
+        "@fortawesome/fontawesome-pro": "^6.1.0",
         "@popperjs/core": "^2.10.1",
         "bootstrap": "^5.1.1",
         "ckeditor": "^4.12.1",

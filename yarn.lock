@@ -873,10 +873,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.3.tgz#90420f9f9c6d3987f176a19a7d8e764271a2f55d"
   integrity sha512-Fxt+AfXgjMoin2maPIYzFZnQjAXjAL0PHscM5pRTtatFqB+vZxAM9tLp2Optnuw3QOQC40jTNeGYFOMvyf7v9g==
 
-"@fortawesome/fontawesome-pro@^5.15.4":
-  version "5.15.4"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.15.4/fontawesome-pro-5.15.4.tgz#aae79a86621a79ae972772ad2906a13ade650a06"
-  integrity sha512-ApOqpDdKgA79xfLZH3B5PucZxj+TZyQUSrZ4bKkbJCR+zjmveQ4/gp/uXc5bNNhsdtJUy16BYJ/lAVydca2Y5Q==
+"@fortawesome/fontawesome-pro@^6.1.0":
+  version "6.1.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/6.1.0/fontawesome-pro-6.1.0.tgz#c7ae5be6fa9b492e695a345394e03534a99ed88e"
+  integrity sha512-BsNhQDKcZJ5Rf2Xz75VXF7RmafcQuQGHbrs44IAGZYf8SazMa9w+NHdFRRBVfHBeXUFPAUoO9Jffu/tVuI09EA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
