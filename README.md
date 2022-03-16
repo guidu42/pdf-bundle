@@ -21,21 +21,22 @@ Back : Only stuff For Back
 
 ```
 - composer install
-
-
-Before executing the yarn command :
-If you have the Drosalys .npmrc => copy/past it in your project location
-Else Execute this two command :
-- @fortawesome:registry=https://npm.fontawesome.com/
-- //npm.fontawesome.com/:_authToken=9AF4B599-5897-4FB6-ADDE-4622E13CDAC1
-
-
 - yarn
 ```
 
 ```
-Create your database, then set it in the .env.local :
+Configure your Database in a .env.local file :
 DATABASE_URL="mysql://root@127.0.0.1:3306/starter_drosalys_v5?serverVersion=5.7"
+```
+
+Then create it with this command : 
+```
+symfony console d:d:c
+```
+
+Then execute migrations with this command :
+```
+symfony console d:m:m
 ```
 
 ### Changes :
