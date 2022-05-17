@@ -1,6 +1,13 @@
+### password is : admin63
 App\Entity\User:
     user0:
-        email: 'test@gmail.com'
-        firstName: 'test'
-        lastName: 'test'
-        password: 'abcde'
+        email: 'admin@drosalys.fr'
+        firstName: 'Steve'
+        lastName: 'Jobs'
+        password: "\\$2y\\$13\\$Jqb0L0uD17.j3GXQHUSdFeiXyuOLe4YVmbNGeVFCf81pY2XUT4nNu"
+        roles: ['ROLE_ADMIN']
+    user1:
+        email: 'user@drosalys.fr'
+        firstName: 'Jean'
+        lastName: 'Roger'
+        password: "\\$2y\\$13\\$Jqb0L0uD17.j3GXQHUSdFeiXyuOLe4YVmbNGeVFCf81pY2XUT4nNu"
