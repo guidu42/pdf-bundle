@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $pdfTmpDir: '%kernel.cache_dir%/pdf_tmp'
+
+  Drosalys\Bundle\PdfBundle\:
+    resource: '../../'
+    exclude:
+      - '../../DependencyInjection/'
+      - '../../Resources/'
+      - '../../Tests/'

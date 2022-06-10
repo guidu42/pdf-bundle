@@ -1,0 +1,14 @@
+vendor/
+composer.lock
+phpunit.xml
+.php_cs.cache
+.phpunit.result.cache
+composer.phar
+/.phpunit
+node_modules/
+bundles/
+esm5/
+esm2015/
+yarn-error.log
+styles.css
+styles.css.map

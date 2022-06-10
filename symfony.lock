@@ -2,6 +2,12 @@
     "brick/math": {
         "version": "0.9.3"
     },
+    "chrome-php/chrome": {
+        "version": "v1.6.1"
+    },
+    "chrome-php/wrench": {
+        "version": "v1.2.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.3"
     },
@@ -90,6 +96,9 @@
     },
     "egulias/email-validator": {
         "version": "3.1.1"
+    },
+    "evenement/evenement": {
+        "version": "v3.0.1"
     },
     "fakerphp/faker": {
         "version": "v1.19.0"

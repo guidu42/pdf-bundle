@@ -7,6 +7,7 @@
         "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "chrome-php/chrome": "^1.6",
         "composer/package-versions-deprecated": "1.11.99.3",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.4",
@@ -48,7 +49,8 @@
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "5.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "wikimedia/composer-merge-plugin": "^2.0"
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.10",
@@ -69,7 +71,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "autoload": {
@@ -107,6 +110,12 @@
         "symfony": {
             "allow-contrib": false,
             "require": "5.4.*"
+        },
+        "merge-plugin": {
+            "include": [
+                "shared/*/composer.json"
+            ],
+            "merge-dev": true
         }
     }
 }
