@@ -19,19 +19,23 @@
         }
     ],
     "require": {
-        "php": "^7.1|^8.0",
+        "php": "^7.4|^8.0",
         "ext-json": "*",
         "symfony/config": "^4.4|^5.0",
         "symfony/dependency-injection": "^4.4|^5.0",
         "symfony/http-kernel": "^4.4|^5.0",
+        "symfony/http-foundation": "*",
+        "symfony/webpack-encore-bundle": "*",
         "symfony/yaml": "^4.4|^5.0",
         "chrome-php/chrome": "^1.6",
         "symfony/filesystem": "*",
-        "twig/twig": "^3.4"
+        "twig/twig": "^3.4",
+        "twig/cssinliner-extra": "*",
+        "twig/extra-bundle": "*"
     },
     "autoload": {
         "psr-4": {
-            "Drosalys\\Bundle\\PdfBundle\\": "src/"
+            "Drosalys\\PdfBundle\\": "src/"
         }
     }
 }

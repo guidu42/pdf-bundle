@@ -11,8 +11,8 @@ build_php:
         - composer selfupdate --2
     script:
         - composer install --no-suggest --dev -n
-        - rm -Rf var/cache/{dev,prod,test}
-        - rm -Rf var/log/{dev,prod,test}.log
+        - rm -Rf var/cache/{dev,prod,tests}
+        - rm -Rf var/log/{dev,prod,tests}.log
     artifacts:
         name: 'VENDOR_${CI_COMMIT_SHORT_SHA}'
         paths:
@@ -54,7 +54,7 @@ build_assets:
 
 
 # Tests
-# No unit test yet.
+# No unit tests yet.
 
 # Build Deploy
 # build_deploy_php_prod:
@@ -136,9 +136,9 @@ build_deploy_assets:
 #         - find . -type d -exec chmod 755 {} \;
 #         - find . -type f -exec chmod 644 {} \;
 #         - rsync -az -e "ssh -p $PROD_SSH_PORT" --delete --filter='protect var/*' --filter='protect public/media/*' --filter='protect public/uploads/*' --filter='protect public/manual_uploads/*' --filter='protect public/bundles/*' --exclude=.git --exclude=.env.local --exclude=.env.*.local . $PROD_USER@$PROD_SRV:$PROD_DIR/html
-#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,test}"
+#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,tests}"
 #         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "cd $PROD_DIR && docker-compose exec -u $PROD_UID:$PROD_GID -T php php bin/console doctrine:migrations:migrate -n"
-#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,test}"
+#         - ssh $PROD_USER@$PROD_SRV -p $PROD_SSH_PORT "rm -Rf $PROD_DIR/html/var/cache/{prod,dev,tests}"
 
 #     artifacts:
 #         name: "PROD_${CI_COMMIT_REF_NAME}"
@@ -164,10 +164,10 @@ deploy_test:
         - find . -type d -exec chmod 755 {} \;
         - find . -type f -exec chmod 644 {} \;
         - rsync -az -e "ssh -p $TEST_SSH_PORT" --delete --filter='protect var/*' --filter='protect public/bundles/*' --exclude=.git --exclude=.env.local --exclude=.env.*.local . $TEST_USER@$TEST_SRV:$TEST_DIR/html
-        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,test}"
+        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,tests}"
         - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "cd $TEST_DIR && docker-compose exec -u $TEST_UID:$TEST_GID -T php php bin/console doctrine:migrations:migrate -n"
         #        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "cd $TEST_DIR && docker-compose exec -u $TEST_UID:$TEST_GID -T php php bin/console hautelook:fixtures:load --purge-with-truncate -n
-        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,test}"
+        - ssh $TEST_USER@$TEST_SRV -p $TEST_SSH_PORT "rm -Rf $TEST_DIR/html/var/cache/{prod,dev,tests}"
     artifacts:
         name: "TEST_${CI_COMMIT_REF_NAME}"
         paths:

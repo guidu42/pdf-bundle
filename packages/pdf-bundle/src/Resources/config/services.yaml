@@ -1,0 +1,31 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      string $chromeBin: '%drosalys.pdf.chrome_bin%'
+      string $saveDirectory: 'drosalys.pdf.save_dir'
+      string $pdfTmpDir: '%kernel.cache_dir%\pdf_tmp'
+      string $projectDir: '%kernel.project_dir%'
+
+  Drosalys\PdfBundle\:
+    resource: '../../'
+    exclude:
+      - '../../DependencyInjection/'
+      - '../../Resources/'
+      - '../../Entity'
+      - '../../Tests/'
+      - '../../DrosalysPdfBundle.php'
+
+  Drosalys\PdfBundle\Service\PdfGenerator:
+    tags:
+      - { name: 'drosalys.pdf_bundle_generator'}
+    class: 'Drosalys\PdfBundle\Service\PdfGenerator'
+
+  Drosalys\PdfBundle\Twig\Runtime\CssInlinerRuntime:
+    tags:
+      - { name: 'drosalys.css_inliner_runtime'}
+    class: 'Drosalys\PdfBundle\Twig\Runtime\CssInlinerRuntime'
+    arguments:
+      $tagRenderer: '@webpack_encore.tag_renderer'
+      $request: '@request_stack'

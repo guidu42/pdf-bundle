@@ -1,6 +1,6 @@
 <?php
 
-namespace Drosalys\Bundle\PdfBundle\DependencyInjection;
+namespace Drosalys\PdfBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,6 +15,19 @@ class DrosalysPdfExtension extends Extension implements PrependExtensionInterfac
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('drosalys.pdf.chrome_bin', $config['chrome_bin']);
+        $container->setParameter('drosalys.pdf.save_dir', $config['save_dir']);
+
+//        if(!$config['tmp_dir']){
+//            $container->setParameter('pdf_tmp_dir', '%kernel.cache_dir%/pdf_tmp');
+//        }else{
+//            $container->setParameter('pdf_tmp_dir', $config['tmp_dir']);
+//        }
+
     }
 
     public function prepend(ContainerBuilder $container)

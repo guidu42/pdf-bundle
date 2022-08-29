@@ -69,8 +69,8 @@ Encore
     })
 
     .copyFiles({
-        from: './assets/shared/images',
-        to: 'images/shared/[path][name].[ext]'
+        from: './assets/packages/images',
+        to: 'images/packages/[path][name].[ext]'
     })
 
     .copyFiles([
@@ -91,9 +91,12 @@ Encore
     .addEntry('front-scripts', './assets/front/scripts/index.ts')
     .addStyleEntry('front-style', './assets/front/styles/index.scss')
 
+    //Pdf style and scripts
+    .addStyleEntry('pdf-style', './assets/pdf/index.scss')
+
     //Shared style and scripts
-    .addEntry('shared-scripts', './assets/shared/scripts/index.ts')
-    .addStyleEntry('shared-style', './assets/shared/styles/index.scss')
+    // .addEntry('packages-scripts', './assets/packages/scripts/index.ts')
+    // .addStyleEntry('packages-style', './assets/packages/styles/index.scss')
 
     // uncomment if you use TypeScript
     .enableTypeScriptLoader()
