@@ -11,7 +11,8 @@ class PdfController extends AbstractController
 {
     #[Route('/pdf', name: 'pdf')]
     public function __invoke(PdfGenerator $pdfGenerator): Response{
-        return new Response($pdfGenerator->renderOutput('pdf/pdf-test.html.twig', 'pdf-style'),200, [
+        return new Response($pdfGenerator->renderOutput('pdf/pdf-test.html.twig', 'pdf-style', [], ['printBackground' => true]),
+            200, [
             'Content-Type' => 'application/pdf'
         ]);
     }

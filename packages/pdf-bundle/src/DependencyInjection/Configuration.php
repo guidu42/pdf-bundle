@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
-                ->scalarNode('save_dir')
+                ->scalarNode('asset_output_path')
                     ->defaultNull()
                 ->end()
                 ->scalarNode('chrome_bin')

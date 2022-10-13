@@ -4,9 +4,8 @@ services:
     autoconfigure: true
     bind:
       string $chromeBin: '%drosalys.pdf.chrome_bin%'
-      string $saveDirectory: 'drosalys.pdf.save_dir'
       string $pdfTmpDir: '%kernel.cache_dir%\pdf_tmp'
-      string $projectDir: '%kernel.project_dir%'
+      string $assetOutPutPatch: '%drosalys.pdf.asset_output_path%'
 
   Drosalys\PdfBundle\:
     resource: '../../'
@@ -28,4 +27,3 @@ services:
     class: 'Drosalys\PdfBundle\Twig\Runtime\CssInlinerRuntime'
     arguments:
       $tagRenderer: '@webpack_encore.tag_renderer'
-      $request: '@request_stack'

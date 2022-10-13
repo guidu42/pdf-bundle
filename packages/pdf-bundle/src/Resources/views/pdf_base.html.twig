@@ -1,11 +1,5 @@
-
-{#{% apply inline_css(source( absolute_url(asset(style)))) %}#}
 {% apply inline_css_webpack(styleEntryPoint) %}
-    <html>
-    <head>
-    </head>
-    <body>
-    <p>Hello CSS!</p>
-    </body>
-    </html>
+    {% block html %}
+
+    {% endblock %}
 {% endapply %}

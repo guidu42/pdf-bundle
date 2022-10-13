@@ -11,7 +11,7 @@ class CssInlinerExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('inline_css_webpack', [CssInlinerRuntime::class, 'foo'], ['is_safe' => ['all']]),
+            new TwigFilter('inline_css_webpack', [CssInlinerRuntime::class, 'getCssInline'], ['is_safe' => ['all']]),
         ];
     }
 }

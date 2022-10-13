@@ -20,14 +20,7 @@ class DrosalysPdfExtension extends Extension implements PrependExtensionInterfac
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('drosalys.pdf.chrome_bin', $config['chrome_bin']);
-        $container->setParameter('drosalys.pdf.save_dir', $config['save_dir']);
-
-//        if(!$config['tmp_dir']){
-//            $container->setParameter('pdf_tmp_dir', '%kernel.cache_dir%/pdf_tmp');
-//        }else{
-//            $container->setParameter('pdf_tmp_dir', $config['tmp_dir']);
-//        }
-
+        $container->setParameter('drosalys.pdf.asset_output_path', $config['asset_output_path']);
     }
 
     public function prepend(ContainerBuilder $container)
