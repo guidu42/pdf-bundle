@@ -1,24 +1,26 @@
 {% apply inline_css_webpack(styleEntriesPoint) %}
-    {% block html %}
-        <!DOCTYPE html>
-        <html lang="fr">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title></title>
-        </head>
-        <body>
-        <h1>PDF drosalys bundle</h1>
-        <div class="container">
-            <div class="test text-center">
-                <p>This is the base template for Drosalys/pdf-bundle</p>
-                <p>if you see this, it means you forgot to define your templates when you called the PdfGenerator</p>
-                <p class="fs-6">Don't forget to extend this template to apply your styles</p>
+    {% apply inline_css(styleFile) %}
+        {% block html %}
+            <!DOCTYPE html>
+            <html lang="fr">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <title></title>
+            </head>
+            <body>
+            <h1>PDF drosalys bundle</h1>
+            <div class="container">
+                <div class="test text-center">
+                    <p>This is the base template for Drosalys/pdf-bundle</p>
+                    <p>if you see this, it means you forgot to define your templates when you called the PdfGenerator</p>
+                    <p class="fs-6">Don't forget to extend this template to apply your styles</p>
+                </div>
             </div>
-        </div>
 
-        </body>
+            </body>
 
-        </html>
-    {% endblock %}
+            </html>
+        {% endblock %}
+    {% endapply %}
 {% endapply %}

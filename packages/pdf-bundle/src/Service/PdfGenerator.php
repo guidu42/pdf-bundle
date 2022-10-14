@@ -2,171 +2,96 @@
 
 namespace Drosalys\PdfBundle\Service;
 
-use EntryPoint;
 use HeadlessChromium\BrowserFactory;
-use League\Flysystem\Filesystem as Flysystem;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Response;
+use Twig\Cache\FilesystemCache;
 use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class PdfGenerator
 {
-    private ?Flysystem $storage = null;
-
-    private string $fileName;
-
-    private string $template;
-
-    private array $templateVars = [];
-
-    private array $pdfOptions = [];
-
-    private array $styleEntryPoints = [];
-
     private BrowserFactory $browserFactory;
+    private $fs;
 
     public function __construct(
         private string $pdfTmpDir,
         private string $chromeBin,
+        private string $templatesDir,
+        private FilesystemLoader $filesystemLoader,
         private Environment $twig,
-        private Filesystem $fs,
-        private bool $debug = false,
     )
     {
         $this->browserFactory = new BrowserFactory($this->chromeBin);
-        $this->template = '@DrosalysPdf/pdf_base.html.twig';
+
+        $this->fs = new Filesystem();
+        $this->filesystemLoader->addPath($this->templatesDir);
+        $this->twig->setCache(
+            new FilesystemCache('D:\travail\Drosalys\developpement\pdf-bundle/var/cache/pdf'));
     }
 
-    public function renderOutput(): string
+    public function download(Pdf $pdf)
     {
-        $htmlFile = $this->pdfTmpDir . '/' . $this->getHtmlFileName();
-        $pdfFile = $this->pdfTmpDir . '/' . $this->getPdfFileName();
+        $response = new Response($this->renderOutput($pdf), 200, [
+            'Content-Type' => 'application/pdf',
+        ]);
+        $response->headers->add(['Content-Type' => 'application/pdf']);
+        $response->headers->add(['Content-Disposition' => $response->headers->makeDisposition('attachment', $pdf->getPdfFileName())]);
+        return $response;
+    }
 
-        if($this->getStorage() !== null && $this->getStorage()->fileExists($this->getPdfFileName())) {
-            return $this->getStorage()->read($this->getPdfFileName());
+    public function renderOutput(Pdf $pdf): string
+    {
+        $this->savePdf($pdf);
+        return $this->getPdfContent($pdf);
+    }
+
+    public function savePdf(Pdf $pdf): void
+    {
+        if($pdf->getStorage() != null && !$pdf->getStorage()->fileExists($pdf->getPdfFileName())) {
+            $pdf->getStorage()->write($pdf->getPdfFileName(), $this->getPdfContent($pdf));
+        }
+    }
+
+    public function getPdfContent(Pdf $pdf): string
+    {
+        if($pdf->getStorage() && $pdf->getStorage()->fileExists($pdf->getPdfFileName())) {
+            return $pdf->getStorage()->read($pdf->getPdfFileName());
         }
 
-        if ($this->debug || !$this->fs->exists($pdfFile)) {
-            $this->fs->dumpFile($htmlFile, $this->twig->render(
-                $this->template,
-                array_merge(
-                    ['styleEntriesPoint' => $this->getStyleEntryPoints()],
-                    $this->getTemplateVars()
-                )
-            ));
-
-            $browser = $this->browserFactory->createBrowser([
-                'noSandbox' => true,
-            ]);
-
-            $page = $browser->createPage();
-            $page->navigate('file://'.$htmlFile)->waitForNavigation();
-            $page
-                ->pdf($this->pdfOptions)
-                ->saveToFile($pdfFile)
-            ;
-            $browser->close();
-
-            $this->fs->remove($htmlFile);
-        }
-
-        $pdfContent = file_get_contents($pdfFile) ? : '';
-
-        if($this->getStorage() != null && !$this->getStorage()->fileExists($this->getPdfFileName())) {
-            $this->getStorage()->write($this->getPdfFileName(), $pdfContent);
-        }
-
-        $this->fs->remove($pdfFile);
-
-        return $pdfContent;
+        return file_get_contents($this->createPdfFile($pdf)) ? : '';
     }
 
-    private function getHtmlFileName(): string
+    public function createPdfFile(Pdf $pdf): string
     {
-        return $this->getFileName() . '.html';
-    }
+        $pdfFile = $this->pdfTmpDir . '/' . $pdf->getPdfFileName();
+        $htmlFile = $this->pdfTmpDir . '/' . $pdf->getHtmlFileName();
 
-    private function getPdfFileName(): string
-    {
-        return $this->getFileName() . '.pdf';
-    }
+        $this->fs->dumpFile($htmlFile, $this->twig->render(
+            $pdf->getTemplate(),
+            array_merge(
+                [
+                    'styleEntriesPoint' => $pdf->getStyleEntryPoints(),
+                    'styleFile' => $pdf->getOneStyleFile(),
+                ],
+                $pdf->getTemplateVars()
+            )
+        ));
 
-    public function getStorage()
-    {
-        return $this->storage;
-    }
+        $browser = $this->browserFactory->createBrowser([
+            'noSandbox' => true,
+        ]);
 
-    public function setStorage($storage): self
-    {
-        $this->storage = $storage;
+        $page = $browser->createPage();
+        $page->navigate('file://'.$htmlFile)->waitForNavigation();
+        $page
+            ->pdf($pdf->getPdfOptions())
+            ->saveToFile($pdfFile)
+        ;
+        $browser->close();
 
-        return $this;
-    }
+        $this->fs->remove($htmlFile);
 
-    public function getFileName(): string
-    {
-        return $this->fileName;
-    }
-
-    public function setFileName(string $fileName): self
-    {
-        $this->fileName = $fileName;
-
-        return $this;
-    }
-
-    public function getTemplate(): string
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(string $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
-    public function getTemplateVars(): array
-    {
-        return $this->templateVars;
-    }
-
-    public function setTemplateVars(array $templateVars): self
-    {
-        $this->templateVars = $templateVars;
-
-        return $this;
-    }
-
-    public function getPdfOptions(): array
-    {
-        return $this->pdfOptions;
-    }
-
-    public function setPdfOptions(array $pdfOptions): self
-    {
-        $this->pdfOptions = $pdfOptions;
-
-        return $this;
-    }
-
-    public function getStyleEntryPoints(): array
-    {
-        return $this->styleEntryPoints;
-    }
-
-    public function addStyleEntryPoint(EntryPoint $entryPoint): self
-    {
-        if(!in_array($entryPoint, $this->styleEntryPoints)) {
-            $this->styleEntryPoints[] = $entryPoint;
-        }
-        return $this;
-    }
-
-    public function setStyleEntryPoints(array $styleEntryPoints): self
-    {
-        $this->styleEntryPoints = $styleEntryPoints;
-
-        return $this;
+        return $pdfFile;
     }
 }

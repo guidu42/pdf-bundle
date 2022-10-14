@@ -10,7 +10,7 @@ class CssInlinerRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private TagRenderer $tagRenderer,
-        private string $assetOutPutPatch
+        private string $assetOutPutPath
     )
     {}
 
@@ -43,7 +43,7 @@ class CssInlinerRuntime implements RuntimeExtensionInterface
         $newHrefArray = [];
         foreach ($hrefArray as $href){
             if(!str_contains($href, 'http')){
-                 $newHrefArray[] = $this->assetOutPutPatch . $href;
+                 $newHrefArray[] = $this->assetOutPutPath . $href;
             }else{
                 $newHrefArray[] = $href;
             }

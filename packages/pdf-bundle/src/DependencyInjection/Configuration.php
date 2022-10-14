@@ -23,6 +23,8 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('pdfTmpDir')
                     ->defaultNull()
                 ->end()
+                ->scalarNode('templates_dir')
+                ->end()
             ->end();
 
         return $treeBuilder;

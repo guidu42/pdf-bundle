@@ -5,7 +5,8 @@ services:
     bind:
       string $chromeBin: '%drosalys.pdf.chrome_bin%'
       string $pdfTmpDir: '%drosalys.pdf.pdf_tmp_dir%'
-      string $assetOutPutPatch: '%drosalys.pdf.asset_output_path%'
+      string $assetOutPutPath: '%drosalys.pdf.asset_output_path%'
+      string $templatesDir: '%drosalys.pdf.templates_dir%'
 
   Drosalys\PdfBundle\:
     resource: '../../'
@@ -20,6 +21,9 @@ services:
     tags:
       - { name: 'drosalys.pdf_bundle_generator'}
     class: 'Drosalys\PdfBundle\Service\PdfGenerator'
+    arguments:
+      $filesystemLoader: '@twig.loader.native_filesystem'
+      $twig: '@twig'
 
   Drosalys\PdfBundle\Twig\Runtime\CssInlinerRuntime:
     tags:
@@ -27,5 +31,3 @@ services:
     class: 'Drosalys\PdfBundle\Twig\Runtime\CssInlinerRuntime'
     arguments:
       $tagRenderer: '@webpack_encore.tag_renderer'
-
-
