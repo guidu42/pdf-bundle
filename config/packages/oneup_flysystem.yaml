@@ -1,0 +1,10 @@
+oneup_flysystem:
+  adapters:
+    pdf_adapter:
+      local:
+        location: "%kernel.project_dir%/cache/pdf"
+
+  filesystems:
+    pdfStorage:
+      adapter: pdf_adapter
+

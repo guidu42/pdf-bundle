@@ -10,13 +10,17 @@ class CssInlinerRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private TagRenderer $tagRenderer,
-        private string $assetOutPutPatch,
+        private string $assetOutPutPatch
     )
     {}
 
-    public function getCssInline(string $body, string $entryName, string $packageName = null, string $entrypointName = '_default', array $attributes = []): string
+    public function getCssInline(string $body, array $entryPoints): string
     {
-        $linkTags = $this->tagRenderer->renderWebpackLinkTags($entryName, $packageName, $entrypointName, $attributes);
+        $linkTags = [];
+        /** @var \EntryPoint $entryPoint */
+        foreach ($entryPoints as $entryPoint) {
+            $linkTags[] = $this->tagRenderer->renderWebpackLinkTags($entryPoint->getName(), $entryPoint->getPackageName(), $entryPoint->getEntrypointName(), $entryPoint->getAttributes());
+        }
         $hrefArray = $this->getHrefFromLinkTag($linkTags);
 
         $absoluteHrefArray = $this->generateAbsoluteUrl($hrefArray);

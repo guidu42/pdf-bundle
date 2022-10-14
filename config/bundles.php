@@ -20,4 +20,5 @@ return [
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'tests' => true],
     Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'tests' => true],
     Drosalys\PdfBundle\DrosalysPdfBundle::class => ['all' => true],
+    Oneup\FlysystemBundle\OneupFlysystemBundle::class => ['all' => true],
 ];

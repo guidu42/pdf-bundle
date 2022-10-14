@@ -20,6 +20,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('chrome_bin')
                     ->defaultNull()
                 ->end()
+                ->scalarNode('pdfTmpDir')
+                    ->defaultNull()
+                ->end()
             ->end();
 
         return $treeBuilder;

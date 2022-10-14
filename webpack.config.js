@@ -93,6 +93,7 @@ Encore
 
     //Pdf style and scripts
     .addStyleEntry('pdf-style', './assets/pdf/index.scss')
+    .addStyleEntry('pdf-style-2', './assets/pdf/index2.scss')
 
     //Shared style and scripts
     // .addEntry('packages-scripts', './assets/packages/scripts/index.ts')

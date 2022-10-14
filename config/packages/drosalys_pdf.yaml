@@ -1,3 +1,4 @@
 drosalys_pdf:
   chrome_bin: '%env(CHROME_BIN)%'
   asset_output_path: '%kernel.project_dir%/public/'
+  pdfTmpDir: '%kernel.cache_dir%/pdf_tmp/'
