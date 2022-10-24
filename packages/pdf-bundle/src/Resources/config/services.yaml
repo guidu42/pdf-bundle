@@ -6,7 +6,8 @@ services:
       string $chromeBin: '%drosalys.pdf.chrome_bin%'
       string $pdfTmpDir: '%drosalys.pdf.pdf_tmp_dir%'
       string $assetOutPutPath: '%drosalys.pdf.asset_output_path%'
-      string $templatesDir: '%drosalys.pdf.templates_dir%'
+      string $defaultTemplatesDir: '%drosalys.pdf.default_templates_dir%'
+      string $defaultCacheDir: '%drosalys.pdf.default_cache_dir%'
 
   Drosalys\PdfBundle\:
     resource: '../../'

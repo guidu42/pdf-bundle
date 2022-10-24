@@ -2,7 +2,7 @@
 
 namespace App\Controller\Front;
 
-use Drosalys\PdfBundle\Service\Pdf;
+use Drosalys\PdfBundle\Models\Pdf;
 use Drosalys\PdfBundle\Service\PdfGenerator;
 use EntryPoint;
 use League\Flysystem\FilesystemOperator;
@@ -23,6 +23,8 @@ class PdfController extends AbstractController
     public function __invoke(PdfGenerator $pdfGenerator): Response{
         $pdf = (new Pdf())
             ->setTemplate('pdf/pdf-test.html.twig')
+//            ->setTemplateDir($this->kernel->getProjectDir() . '/test/')
+//                ->setCacheDir($this->kernel->getProjectDir() . '/var/cache/pdfr3')
             ->addStyleEntryPoint(new EntryPoint('pdf-style'))
             ->addStyleEntryPoint(new EntryPoint('pdf-style-2'))
             ->addStyleFile($this->kernel->getProjectDir() . '/assets/pdf/' . 'test.css')

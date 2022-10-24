@@ -1,9 +1,8 @@
 <?php
 
-namespace Drosalys\PdfBundle\Service;
+namespace Drosalys\PdfBundle\Models;
 
 use EntryPoint;
-use PHPUnit\Util\Xml\Exception;
 use Storage;
 
 class Pdf
@@ -13,6 +12,10 @@ class Pdf
     private string $fileName;
 
     private string $template;
+
+    private ?string $templateDir = null;
+
+    private ?string $cacheDir = null;
 
     private array $templateVars = [];
 
@@ -146,4 +149,29 @@ class Pdf
 
         return $this;
     }
+
+    public function getTemplateDir(): ?string
+    {
+        return $this->templateDir;
+    }
+
+    public function setTemplateDir(?string $templateDir): self
+    {
+        $this->templateDir = $templateDir;
+
+        return $this;
+    }
+
+    public function getCacheDir(): ?string
+    {
+        return $this->cacheDir;
+    }
+
+    public function setCacheDir(?string $cacheDir): self
+    {
+        $this->cacheDir = $cacheDir;
+
+        return $this;
+    }
+
 }

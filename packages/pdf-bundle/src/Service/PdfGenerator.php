@@ -17,17 +17,14 @@ class PdfGenerator
     public function __construct(
         private string $pdfTmpDir,
         private string $chromeBin,
-        private string $templatesDir,
+        private ?string $defaultTemplatesDir,
+        private ?string $defaultCacheDir,
         private FilesystemLoader $filesystemLoader,
         private Environment $twig,
     )
     {
         $this->browserFactory = new BrowserFactory($this->chromeBin);
-
         $this->fs = new Filesystem();
-        $this->filesystemLoader->addPath($this->templatesDir);
-        $this->twig->setCache(
-            new FilesystemCache('D:\travail\Drosalys\developpement\pdf-bundle/var/cache/pdf'));
     }
 
     public function download(Pdf $pdf)
@@ -62,8 +59,28 @@ class PdfGenerator
         return file_get_contents($this->createPdfFile($pdf)) ? : '';
     }
 
+    private function setUpTwigEnvironment(Pdf $pdf): void
+    {
+        if($pdf->getTemplateDir()) {
+            $this->filesystemLoader->addPath($pdf->getTemplateDir());
+        }else if($this->defaultTemplatesDir) {
+            $this->filesystemLoader->addPath($this->defaultTemplatesDir);
+        }
+        if($pdf->getCacheDir()) {
+            $this->twig->setCache(
+                new FilesystemCache($pdf->getCacheDir())
+            );
+        } else if($this->defaultCacheDir) {
+            $this->twig->setCache(
+                new FilesystemCache($this->defaultCacheDir)
+            );
+        }
+    }
+
     public function createPdfFile(Pdf $pdf): string
     {
+        $this->setUpTwigEnvironment($pdf);
+
         $pdfFile = $this->pdfTmpDir . '/' . $pdf->getPdfFileName();
         $htmlFile = $this->pdfTmpDir . '/' . $pdf->getHtmlFileName();
 
